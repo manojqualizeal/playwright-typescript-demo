@@ -8,17 +8,22 @@ import * as configprop from "../utils/configProp";
 test.describe('@smoke: Login as a user and Verify login is successful',
 	() => {
 		test('New Application', async ({
-			basePage,
-			businessGeneric,
+			playwrightUtil,
+			applicationGeneric,
             loginPage
 		}) => {
-            await test.step(`Open the URL and Enter Username and Password & Verify the user is logged in`, async () => {
+                await test.step(`Open the URL and Enter Username and Password & Verify the user is logged in`, async () => {
 
                 await loginPage.login();
 
+               // await applicationGeneric.recordVerification("test");
+
+               //await playwrightUtil.verifyElementAttached("//a[contains(text(),'test')]");
+
+               await playwrightUtil.verifyElementNotAttached("//a[contains(text(),'test')]");
+
                 await loginPage.verifyLoginIsSuccessful();
 
-                await basePage.waitForSomeTime(30);
       
 			})
 

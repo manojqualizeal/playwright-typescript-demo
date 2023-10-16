@@ -1,11 +1,18 @@
 import { expect } from "@playwright/test";
 import * as locators from "../pagelocators/locators";
-import basePage from "../pages/basePage";
+import * as commonLocators from "../pagelocators/commonLocators";
+import playwrightUtil from "../utils/playwrightUtil";
 
-class businessGeneric extends basePage {
+class applicationGeneric extends playwrightUtil {
     constructor(page) {
       super(page);
     }
+
+    async recordVerification(strValue)
+    {
+        const selector = commonLocators.recordName.replace('%s',strValue);
+        await this.verifyElementAttached(selector);
+    }
 
     async selectValueFromAutoCompleteSearchInHomeScreen(strvalue,strOptionSelectValue)
     {
@@ -223,4 +230,4 @@ class businessGeneric extends basePage {
     }
 
 } 
-export default businessGeneric;
+export default applicationGeneric;

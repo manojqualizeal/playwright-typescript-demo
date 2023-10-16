@@ -1,9 +1,10 @@
 import { expect } from "@playwright/test";
 import * as locators from "../pagelocators/locators";
-import basePage from "./basePage";
+import playwrightUtil from "../utils/playwrightUtil";
+import applicationGeneric from "../pages/applicationGeneric"
 import * as configprop from "../utils/configProp";
 
-class loginPage extends basePage {
+class loginPage extends applicationGeneric {
     constructor(page) {
       super(page);
     }

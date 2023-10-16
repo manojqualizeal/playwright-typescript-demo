@@ -1,12 +1,17 @@
 import { expect } from "@playwright/test";
+const path = require('path');
 
-class basePage {
+class playwrightUtil {
   constructor(page) {
     this.page = page;
   }
 
   async open(url) {
     await this.page.goto(url);
+  }
+
+  async openWithWait(url,timeInSeconds) {
+    await this.page.goto(url,{ timeout: timeInSeconds});
   }
 
   async pause(){
@@ -19,10 +24,7 @@ class basePage {
   //   return !!element;
   // }
 
-  async isElementDisplayed(selector) {
-    const element = await this.page.locator(selector);
-    return !!element;
-  }
+
   
   async getPageTitle() {
     return await this.page.title();
@@ -30,6 +32,10 @@ class basePage {
 
   async getUrl() {
     return this.page.url();
+  }
+
+  async waitForLoadState(strState) {
+    return this.page.waitForLoadState(strState);
   }
 
   async waitForPageLoad() {
@@ -57,11 +63,6 @@ class basePage {
     await this.page.waitForNavigation({ timeout: timeInSeconds * 1000});
   }
 
-  // async waitForSelector(selector)
-  // {
-  //   await this.page.waitForSelector(selector);
-  // }
-
   async waitForSelector(selector)
   {
     await this.page.waitForSelector(selector);
@@ -83,6 +84,26 @@ class basePage {
 
   async getElement(selector) {
     return await this.page.locator(selector);
+  }
+  
+//   async isElementDisplayed(selector) {
+//     const element = await this.page.locator(selector);
+//     return !!element;
+//   }
+
+//   async verifyElementPresent(selector) {
+//     const element = await this.page.locator(selector);
+//     expect.soft((!!element)).toBeTruthy();
+//   }
+
+  async verifyElementAttached(identifier)
+  {
+    await expect.soft(this.page.locator(identifier)).toBeAttached();
+  }
+
+  async verifyElementNotAttached(identifier)
+  {
+    await expect.soft(this.page.locator(identifier)).toBeAttached({attached:false});
   }
 
   async isElementVisible(selector, errorMessage) {
@@ -280,9 +301,6 @@ class basePage {
       await expect.soft(this.page.locator(identifier)).toBeFocused();
   }
 
-  async verifyElementAttached(identifier){
-    await expect.soft(this.page.locator(identifier)).toBeAttached();
-}
 
   async verifyJSElementValue(selector, text) {
 		const textValue = await this.page.$eval(selector, element => element.value)
@@ -326,17 +344,6 @@ class basePage {
     for (let i = 0; i < count; ++i) {
       const lastItem = await rows.nth(i).textContent();
       return lastItem;
-    }
-  }
-
-  async isElementVisible(selector, errorMessage) {
-    await this.page.waitForSelector(selector);
-    const element = this.page.locator(selector);
-    try {
-      const isVisible = await element.isVisible();
-      expect(isVisible).toBeTruthy();
-    } catch (error) {
-      throw new Error(`${errorMessage}`);
     }
   }
 
@@ -439,6 +446,21 @@ async takeScreenShot() {
   )
 }
 
+async upLoadFile(selector, fileName)
+{
+  let filePath = path.resolve('src');
+
+  filePath = path.join(filePath, 'testdata', fileName);
+
+  await this.page.locator(selector).setInputFiles(filePath);
+
+  this.waitForSomeTime(4);
 }
 
-export default basePage;
+
+}
+
+
+
+
+export default playwrightUtil;

@@ -1,17 +1,17 @@
 import { test as fixture } from '@playwright/test'
-import businessGeneric from '../pages/businessGeneric'
-import basePage from '../pages/basePage'
-import loginPage from '../pages/loginPage'
+import ApplicationGeneric from '../pages/applicationGeneric'
+import PlaywrightUtil from '../utils/playwrightUtil'
+import LoginPage from '../pages/loginPage'
 
 const test = fixture.extend({
-basePage: async ({ page }, use) => {
-await use(new basePage(page))
+playwrightUtil: async ({ page }, use) => {
+await use(new PlaywrightUtil(page))
 },
-businessGeneric: async ({ page }, use) => {
-await use(new businessGeneric(page))
+applicationGeneric: async ({ page }, use) => {
+await use(new ApplicationGeneric(page))
 },
 loginPage: async ({ page }, use) => {
-    await use(new loginPage(page))
+    await use(new LoginPage(page))
     }
 })
 export default test
