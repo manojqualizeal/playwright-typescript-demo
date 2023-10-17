@@ -416,7 +416,11 @@ class playwrightUtil {
   }
 
 async checkElement(selector){
-  await this.page.check(selector)
+  await this.page.locator(selector).check();
+}
+
+async unCheckElement(selector){
+	  await this.page.locator(selector).uncheck();
 }
 
 async clickFirstElement(selector){
