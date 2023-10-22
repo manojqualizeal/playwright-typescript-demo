@@ -20,3 +20,5 @@ export const listDropDown = "//div[@class='visible menu transition']/div[@role='
 export const listSearchCombox = "//div[@role='listbox' and @class='visible menu transition']/div[@role='option']";
 export const btnSave = "//button[contains(text(),'Save') and @class='ui linkedin button']";
 export const btnCreate = "//button[contains(text(),'Create') and @class='ui linkedin button']";
+export const btnTopHeaderMenuSettings = "//body/div[@id='ui']/div[@class='ui fluid container']/div[@class='ui fluid container']/div[@id='top-header-menu']/div[@class='right menu']/div[@class='ui buttons']/div[@role='listbox']/i[@class='settings icon']";
+export const lnkHome = ".home.icon";

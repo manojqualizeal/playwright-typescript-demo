@@ -57,7 +57,7 @@ async readSingleRowtestdataFromExcel(strFileName,strSheetName,strTestCaseName)
     }
 }
 
-async readtestdatafromexcel(strFileName,strSheetName,strTestCaseName)
+async readMulRowsTestdataFromExcel(strFileName,strSheetName,strTestCaseName)
 {
         try
         {

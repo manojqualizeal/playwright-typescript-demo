@@ -88,7 +88,10 @@ class applicationGeneric extends playwrightUtil {
 
     async selectEntity(sEntityName)
     {
+
         const selector = commonLocators.lnkLeftPaneEntityName.replace('%s',sEntityName); 
+
+        await this.hover(commonLocators.lnkHome);
 
         await this.clickOnElement(selector);
 
@@ -102,6 +105,15 @@ class applicationGeneric extends playwrightUtil {
         await this.waitForSelector(selector);
         
         await this.verifyElementAttached(selector);
+    }
+
+    async createButton(strHeaderName)
+    {
+
+        await this.clickOnElement(commonLocators.btnCreate);
+
+        await this.checkPageHeader(strHeaderName);
+
     }
 
       async selectItemFromDropdown(StrbtnSelector,strListSelector,strDropDownvalue)
@@ -206,68 +218,7 @@ async selectValueFromAutoCompleteSearch(strSearchBoxSelector,strvalue,timeInSeco
               
       }  
 
-    async selectValueFromAutoCompleteSearchInHomeScreen(strvalue,strOptionSelectValue)
-    {
-        let bFlag = false;
-        try{
-            await this.fillInputBox(locators.txthomeSearchClient,strvalue);
-
-            const searchitemlist = locators.listSearchItems;
-
-            await this.waitForSelector1(searchitemlist,80);
-
-            // locator for suggested values
-            const options = this.page.locator(searchitemlist);
-            //const options = this.getElement(searchitemlist);
-
-            //const options = this.getElements(searchitemlist);
-
-            const optionsCount = await options.count();
-
-            console.log(optionsCount);
-
-            //const options = page.$$(searchitemlist);
-
-            if (!options) {
-                throw new Error(`Element with selector ${searchitemlist} not found.`);
-            }
-        
-             //const options = this.getElement("//div/ul[@id='pr_id_1_list']/li");
-
-        
-            for(let i=0;i<optionsCount;i++)
-            {
-                const strOptionValue = await options.nth(i).textContent();
-                console.log(strOptionValue);
-                if(strOptionValue.includes(strOptionSelectValue))
-                {
-                    // click and break lloop
-                    await options.nth(i).click();
-                    //await option.click();
-                    bFlag = true;
-                    break;
-                }
-            }
-            }catch(error){
-                console.log(error.message);
-            }
-            if(!bFlag)
-            {
-                // await this.expect(() => {
-                //     throw new Error(`Value with : ${strOptionSelectValue} not found.`);
-                //   }).toThrow()
-
-                console.log("entered false")
-
-                expect(false,`Value with : ${strOptionSelectValue} not found.`).toBeTruthy();
-
-                //   await expect(() => {
-                //     throw new Error(`Value with : ${strOptionSelectValue} not found.`);
-                //   }).toThrowError();  
-            }
-            
-    }
-
+    
     async selectValueFromAutoCompleteUsingType(identifier, text){
         await this.page.locator(identifier).clear();
         await this.page.locator(identifier).type(text);

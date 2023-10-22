@@ -1,5 +1,7 @@
 import { expect } from "@playwright/test";
 import * as locators from "../pagelocators/locators";
+import * as commonLocators from "../pagelocators/commonLocators";
+import * as login from "../pagelocators/login";
 import playwrightUtil from "../utils/playwrightUtil";
 import applicationGeneric from "../pages/applicationGeneric"
 import * as configprop from "../utils/configProp";
@@ -9,26 +11,34 @@ class loginPage extends applicationGeneric {
       super(page);
     }
 
-async login()
+async login(strUserName,strPassword)
 {
     await this.open(configprop.URL);
 
     await this.waitForPageLoadDomcontentloaded();
 
-    await this.fillInputBox(locators.loginusernameInput,configprop.UserName);
+    await this.fillInputBox(login.txtEmail,strUserName);
 
-    await this.fillInputBox(locators.loginpasswordInput,configprop.PassWord);
+    await this.fillInputBox(login.txtPassword,strPassword);
 
-    await this.clickOnElement(locators.loginButton);
+    await this.clickOnElement(login.btnLogin);
           
-    await this.waitForPageLoadDomcontentloaded();
+    await this.waitForLoadState(configprop.waitStatenetworkidle);
 
-   
+    await this.waitForLoadState(configprop.waitStatedomcontentloaded);
+
 }
 
 async verifyLoginIsSuccessful()
 {
-    await this.verifyElementAttached(locators.txtDashBoard);
+    await this.verifyElementAttached(commonLocators.lnkHome);
+}
+
+async logout()
+{
+    await this.clickOnElement(commonLocators.btnTopHeaderMenuSettings);
+
+    await this.clickOnElement(login.btnLogout)
 }
 
    

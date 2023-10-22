@@ -14,15 +14,13 @@ test.describe('@smoke: Login as a user and Verify login is successful',
 		}) => {
                 await test.step(`Open the URL and Enter Username and Password & Verify the user is logged in`, async () => {
 
-                await loginPage.login();
-
-               // await applicationGeneric.recordVerification("test");
-
-               //await playwrightUtil.verifyElementAttached("//a[contains(text(),'test')]");
-
-               await playwrightUtil.verifyElementNotAttached("//a[contains(text(),'test')]");
+                await loginPage.login(configprop.UserName,configprop.PassWord);
 
                 await loginPage.verifyLoginIsSuccessful();
+
+				await applicationGeneric.selectEntity(configprop.NavCompanies) ;
+
+				await playwrightUtil.waitForSomeTime(10);
 
       
 			})

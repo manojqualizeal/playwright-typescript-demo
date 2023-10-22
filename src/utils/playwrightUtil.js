@@ -98,12 +98,12 @@ class playwrightUtil {
 
   async verifyElementAttached(identifier)
   {
-    await expect.soft(this.page.locator(identifier)).toBeAttached();
+    await expect(this.page.locator(identifier)).toBeAttached();
   }
 
   async verifyElementNotAttached(identifier)
   {
-    await expect.soft(this.page.locator(identifier)).toBeAttached({attached:false});
+    await expect(this.page.locator(identifier)).toBeAttached({attached:false});
   }
 
   async isElementVisible(selector, errorMessage) {
