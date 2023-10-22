@@ -2,6 +2,8 @@
 import {expect} from "@playwright/test";
 import test from '../fixtures/fixture'
 import * as locators from "../pagelocators/locators";
+import * as companiesLocators from "../pagelocators/companiesLocators";
+import * as commonLocators from "../pagelocators/commonLocators";
 import * as configprop from "../utils/configProp";
 
 
@@ -19,6 +21,12 @@ test.describe('@smoke: Login as a user and Verify login is successful',
                 await loginPage.verifyLoginIsSuccessful();
 
 				await applicationGeneric.selectEntity(configprop.NavCompanies) ;
+
+				await playwrightUtil.waitForSomeTime(10);
+
+				await applicationGeneric.selectValueFromAutoCompleteSearch(companiesLocators.txtTags,"Demo deal",10);
+
+				await applicationGeneric.selectItemFromDropdown(companiesLocators.btnPriority,commonLocators.listDropDown,"Medium");
 
 				await playwrightUtil.waitForSomeTime(10);
 

@@ -175,7 +175,7 @@ async selectValueFromAutoCompleteSearch(strSearchBoxSelector,strvalue,timeInSeco
               await this.waitForSelector1(commonLocators.listSearchCombox,timeInSeconds);
   
               // locator for suggested values
-              const options = this.page.locator(listSearchCombox);
+              const options = this.page.locator(commonLocators.listSearchCombox);
   
               const optionsCount = await options.count();
   
