@@ -70,7 +70,7 @@ class playwrightUtil {
 
   async waitForSelector1(selector,timeInSeconds)
   {
-    await this.page.waitForSelector(selector,{ timeout: timeInSeconds * 1000});
+    await this.page.waitForSelector(selector,{ timeout: timeInSeconds * 1000,});
   }
 
   async waitForSelectorState(selector,strState,timeInSeconds)
@@ -86,24 +86,19 @@ class playwrightUtil {
     return await this.page.locator(selector);
   }
   
-//   async isElementDisplayed(selector) {
-//     const element = await this.page.locator(selector);
-//     return !!element;
-//   }
+  async isElementDisplayed(selector) {
+    const element = await this.page.locator(selector);
+    return !!element;
+  }
 
-//   async verifyElementPresent(selector) {
-//     const element = await this.page.locator(selector);
-//     expect.soft((!!element)).toBeTruthy();
-//   }
+  async verifyElementPresent(selector) {
+    const element = await this.page.locator(selector);
+    expect.soft((!!element)).toBeTruthy();
+  }
 
   async verifyElementAttached(identifier)
   {
-    await expect(this.page.locator(identifier)).toBeAttached();
-  }
-
-  async verifyElementNotAttached(identifier)
-  {
-    await expect(this.page.locator(identifier)).toBeAttached({attached:false});
+    await expect.soft(this.page.locator(identifier)).toBeAttached();
   }
 
   async isElementVisible(selector, errorMessage) {
@@ -240,6 +235,37 @@ class playwrightUtil {
     expect.soft((await this.getTextContent(selector)) === expectedTextContent ).toBeTruthy();
   }
 
+  async verifyTextPresent(text) {
+    
+    let selector = "//*[contains(text(),'" + text + "')]";
+
+    //let selector = "//*[contains(text(),'safafa')]";
+
+    let bFlag;
+
+    try{
+      //const element = await this.page.waitForSelector(selector);
+
+      const element = await this.page.waitForSelector(selector,{ state:'attached',timeout: 10 * 1000});
+
+      //await this.waitForSomeTime(10);
+
+      //const element = await this.page.locator(selector).waitFor({ state:'attached',timeout: 10 * 1000});
+
+      //element.waitFor({ state:strState,timeout: timeInSeconds * 1000})
+
+      bFlag = !!element;
+
+    }catch(error)
+    {
+      console.log("verifyTextPresentSoft error:" + error.message);
+      bFlag = false;
+    }
+
+    return bFlag;
+  }
+
+
   async verifyElementText(selector, text) {
     await this.page.waitForSelector(selector);
     const textValue = await this.page.textContent(selector);
@@ -250,6 +276,7 @@ class playwrightUtil {
     await this.page.waitForSelector(selector);
     return await expect.soft(this.page.locator(selector)).toContainText(text);
   }
+
 
   async verifyElementAttribute(selector, attribute, value) {
     await this.page.waitForSelector(selector);
@@ -416,11 +443,7 @@ class playwrightUtil {
   }
 
 async checkElement(selector){
-  await this.page.locator(selector).check();
-}
-
-async unCheckElement(selector){
-	  await this.page.locator(selector).uncheck();
+  await this.page.check(selector)
 }
 
 async clickFirstElement(selector){
@@ -461,10 +484,19 @@ async upLoadFile(selector, fileName)
   this.waitForSomeTime(4);
 }
 
-
+async scrollIntoViewIfNeed(selector)
+{
+    await this.page.locator(selector).scrollIntoViewIfNeeded();
 }
 
+async scrollbottom()
+{
+  await this.page.evaluate(() => {
+     window.scrollTo(0, document.body.scrollHeight);
+    });
+}
 
+}
 
 
 export default playwrightUtil;
