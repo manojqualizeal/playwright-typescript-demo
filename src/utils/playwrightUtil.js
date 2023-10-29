@@ -98,7 +98,18 @@ class playwrightUtil {
 
   async verifyElementAttached(identifier)
   {
+    await expect(this.page.locator(identifier)).toBeAttached();
+  }
+
+  async verifyElementAttachedSoft(identifier)
+  {
     await expect.soft(this.page.locator(identifier)).toBeAttached();
+  }
+
+
+  async verifyElementNotAttachedSoft(identifier)
+  {
+    await expect.soft(this.page.locator(identifier)).toBeAttached({attached:false});
   }
 
   async isElementVisible(selector, errorMessage) {
@@ -494,6 +505,11 @@ async scrollbottom()
   await this.page.evaluate(() => {
      window.scrollTo(0, document.body.scrollHeight);
     });
+}
+
+async getRndInteger(min, max) {
+	const number = Math.floor(Math.random() * (max - min) ) + min;
+	return number.toString();
 }
 
 }

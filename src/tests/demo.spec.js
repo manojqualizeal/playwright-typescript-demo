@@ -5,6 +5,9 @@ import * as locators from "../pagelocators/locators";
 import * as companiesLocators from "../pagelocators/companiesLocators";
 import * as commonLocators from "../pagelocators/commonLocators";
 import * as configprop from "../utils/configProp";
+import dataHandling from "../utils/dataHandling";
+
+let objReadData = new dataHandling();
 
 
 test.describe('@smoke: Login as a user and Verify login is successful',
@@ -12,43 +15,40 @@ test.describe('@smoke: Login as a user and Verify login is successful',
 		test('New Application', async ({
 			playwrightUtil,
 			applicationGeneric,
-            loginPage
+            loginPage,
+			companies
 		}) => {
-                await test.step(`Open the URL and Enter Username and Password & Verify the user is logged in`, async () => {
+                await test.step(`Open the URL and Enter Username and Password & Verify the user is logged in`, async () => 
+				{
 
-                await loginPage.login(configprop.UserName,configprop.PassWord);
+					await loginPage.login(configprop.UserName,configprop.PassWord);
 
-                await loginPage.verifyLoginIsSuccessful();
+					await loginPage.verifyLoginIsSuccessful();
 
-				await applicationGeneric.selectEntity(configprop.NavCompanies) ;
+					// await applicationGeneric.selectValueFromAutoCompleteSearch(companiesLocators.txtTags,"Demo deal",10);
 
-				await playwrightUtil.waitForSomeTime(10);
+					// await applicationGeneric.selectItemFromDropdown(companiesLocators.btnPriority,commonLocators.listDropDown,"Medium");
 
-				await applicationGeneric.selectValueFromAutoCompleteSearch(companiesLocators.txtTags,"Demo deal",10);
-
-				await applicationGeneric.selectItemFromDropdown(companiesLocators.btnPriority,commonLocators.listDropDown,"Medium");
-
-				await playwrightUtil.waitForSomeTime(10);
+					// await playwrightUtil.waitForSomeTime(10);
 
       
 			})
 
-//             await test.step(`Enter Info`, async () => {
+			await test.step(`Create Company`, async () =>
+			 {
 
-//                 await basePage.open(configprop.URL1);
+				await applicationGeneric.selectEntity(configprop.NavCompanies);
 
-//                 await basePage.waitForPageLoadDomcontentloaded();
+				await applicationGeneric.createButton("Create new Company");
 
-//                 await basePage.clickOnElement(locators.btnGraph);
+				const objCompanyData = await objReadData.readSingleRowtestdataFromExcel("CRM.xlsx","Companies","TC1");
 
-//                 await basePage.verifyElementAttached(locators.txtPrice);
+				await companies.createCompany(objCompanyData);
 
-//                 await businessGeneric.selectValuefromDropDownAppGeneric(locators.btnselectCustomer,locators.listBoxGeneral,"customer 1");
-
-//                 await basePage.waitForSomeTime(40);
+				await companies.deleteCompany();
 
 
-//             })
+	         })
 
     });
 });

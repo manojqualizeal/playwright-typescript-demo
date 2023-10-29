@@ -17,6 +17,7 @@ export const popUpHeader = "//div[@class='ui page modals dimmer transition visib
 export const lnkLeftPaneEntityName = "//div[@id='main-nav']//span[text()='%s']";
 export const pageVerificationName = "//span[@class = 'selectable ' and text()='%s']";
 export const listDropDown = "//div[@class='visible menu transition']/div[@role='option']";
+export const listDropDown1 = "//div[@class='visible menu transition']/div[@role='option']/span";
 export const listSearchCombox = "//div[@role='listbox' and @class='visible menu transition']/div[@role='option']";
 export const btnSave = "//button[contains(text(),'Save') and @class='ui linkedin button']";
 export const btnCreate = "//button[contains(text(),'Create') and @class='ui linkedin button']";

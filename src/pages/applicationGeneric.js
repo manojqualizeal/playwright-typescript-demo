@@ -12,13 +12,13 @@ class applicationGeneric extends playwrightUtil {
     async checkRecordDisplayed(strValue)
     {
         const selector = commonLocators.recordName.replace('%s',strValue);
-        await this.verifyElementAttached(selector);
+        await this.verifyElementAttachedSoft(selector);
     }
 
     async checkRecordNotDisplayed(strValue)
     {
         const selector = commonLocators.recordName.replace('%s',strValue);
-        await this.verifyElementNotAttached(selector);
+        await this.verifyElementNotAttachedSoft(selector);
     }
 
     async performTableOperation(sSearchValue, operation) {
@@ -63,7 +63,7 @@ class applicationGeneric extends playwrightUtil {
 
     async performActionsOnPopUp(strOperationName)
     {
-        const selector = commonLocators.popUpOperation.replace('%s',strValue);
+        const selector = commonLocators.popUpOperation.replace('%s',strOperationName);
         
         //Wait for the selector
         await this.waitForSelector1(selector,configprop.MEDIUM_TIMEOUT);
@@ -71,11 +71,13 @@ class applicationGeneric extends playwrightUtil {
         await this.clickOnElement(selector);
     }
 
-    async deleteRecord(sValue, popUpOperation)  
+    async deleteRecord(sValue)  
     {
         await this.performTableOperation(sValue, "delete");
 
-        await this.performActionsOnPopUp(popUpOperation);
+        await this.checkPopupIsDisplayed("Confirm Deletion");
+
+        await this.performActionsOnPopUp("Delete");
     }
 
         /*PopUp verification*/
@@ -155,8 +157,8 @@ class applicationGeneric extends playwrightUtil {
 
             }catch(error)
             {
-                console.log(`selectItemFromDropdown : ${error.message}`);
-                throw new Error(`selectItemFromDropdown : ${error.message}`);
+                console.log(`selectItemFromDropdown : ${strDropDownvalue} : ${error.message}`);
+                throw new Error(`selectItemFromDropdown : ${strDropDownvalue} : ${error.message}`);
             }
             if(!bFlag)
                 {
