@@ -15,11 +15,15 @@ class companies extends applicationGeneric {
       super(page);
     }
 
+
+
 async createCompany(objCompanyData)
 {
-    strCompanyName = Math.floor(Math.random() * (100000 - 10000) ) + 10000;
+    //strCompanyName = Math.floor(Math.random() * (100000 - 10000) ) + 10000;
 
-    strCompanyName = strCompanyName.toString();
+    //strCompanyName = strCompanyName.toString();
+
+    strCompanyName = this.getRndInteger(10000,100000);
 
     await this.fillInputBox(companiesLocators.txtName,strCompanyName);
 
