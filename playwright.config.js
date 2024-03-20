@@ -79,7 +79,7 @@ module.exports = defineConfig({
     /* This is for the screenshots (will be attached in the Reports) */
     //screenshot: 'on', // For every step
     // screenshot: 'off',
-    screenshot: 'only-on-failure',
+    screenshot: 'on',
     /* This is for recording the videos */
     //video:'off', // Do not record video.
     //video:'on', //Record video for each test.
@@ -94,16 +94,16 @@ module.exports = defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-        //viewport: {width: 1920, height: 2160 },
-      //   launchOptions: {
-      //     args: ["--start-maximized"]
-      // } 
-     },
-    },
+    // {
+    //   name: 'chromium',
+    //   use: {
+    //     ...devices['Desktop Chrome'],
+    //     //viewport: {width: 1920, height: 2160 },
+    //   //   launchOptions: {
+    //   //     args: ["--start-maximized"]
+    //   // } 
+    //  },
+    // },
     {
       name: 'chrome',
       use: {
@@ -128,31 +128,31 @@ module.exports = defineConfig({
        },
        
     },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
 
     /* Test against mobile viewports. */
-    {
-      name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
-    },
-    {
-      name: 'Mobile Safari',
-      use: { ...devices['iPhone 12'] },
-    },
+    // {
+    //   name: 'Mobile Chrome',
+    //   use: { ...devices['Pixel 5'] },
+    // },
+    // {
+    //   name: 'Mobile Safari',
+    //   use: { ...devices['iPhone 12'] },
+    // },
 
     /* Test against branded browsers. */
-    {
-      name: 'Microsoft Edge',
-      use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    },
+    // {
+    //   name: 'Microsoft Edge',
+    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
+    // },
     // {
     //   name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },

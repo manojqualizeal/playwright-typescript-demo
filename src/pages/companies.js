@@ -15,7 +15,37 @@ class companies extends applicationGeneric {
       super(page);
     }
 
+async navigateToCompanies(){
+    this.selectEntity(configprop.NavCompanies);
+}
 
+async verifyCreatedCompany(companyName){
+    return;
+}
+
+async enterCompanyName(companyName){
+    await this.fillInputBox(companiesLocators.txtName, companyName);
+}
+
+async enterCompanyStreetAddress(streetAddress){
+    await this.fillInputBox(companiesLocators.txtStreetAddress, streetAddress);
+}
+
+async enterCompanyCity(city){
+    await this.fillInputBox(companiesLocators.txtCity, city);
+}
+
+async enterCompanySateNCountry(sateNCountry){
+    await this.fillInputBox(companiesLocators.txtStateNCountry, sateNCountry);
+}
+
+async enterCompanyPostCode(postCode){
+    await this.fillInputBox(companiesLocators.txtPostCode, postCode);
+}
+
+async enterCompanyAddressCountry(addressCountry){
+    await this.selectItemFromDropdown(companiesLocators.btnAddressCountry,commonLocators.listDropDown, addressCountry);
+}
 
 async createCompany(objCompanyData)
 {
@@ -23,33 +53,39 @@ async createCompany(objCompanyData)
 
     //strCompanyName = strCompanyName.toString();
 
-    strCompanyName = this.getRndInteger(10000,100000);
+    // strCompanyName = this.getRndInteger(10000,100000);
+    // await this.fillInputBox(companiesLocators.txtName,objCompanyData.Name);
+    
+    if(objCompanyData.Name){
+        await this.enterCompanyName(objCompanyData.Name);
+    }
+//     if(objCompanyData.Access)
+//     {
+//         
+//         await this.clickOnElement(companiesLocators.btnAccess);
 
-    await this.fillInputBox(companiesLocators.txtName,strCompanyName);
+//         await this.selectItemFromDropdown(companiesLocators.btnAllowUsers,commonLocators.listDropDown,objCompanyData.Access);
 
-    if(objCompanyData.Access)
-    {
-        
-        await this.clickOnElement(companiesLocators.btnAccess);
+//     }
 
-        await this.selectItemFromDropdown(companiesLocators.btnAllowUsers,commonLocators.listDropDown,objCompanyData.Access);
+    if(objCompanyData.StreetAddress){
+        await this.enterCompanyStreetAddress(objCompanyData.StreetAddress);
+    }
 
-    }
+    if(objCompanyData.City){
+        await this.enterCompanyCity(objCompanyData.City);
+    }
 
-    if(objCompanyData.StreetAddress)
-    {
-        await this.fillInputBox(companiesLocators.txtStreetAddress,objCompanyData.StreetAddress);
+    if(objCompanyData.SateNCountry){
+        await this.enterCompanySateNCountry(objCompanyData.SateNCountry);
+    }
 
-        await this.fillInputBox(companiesLocators.txtCity,objCompanyData.City);
+    if(objCompanyData.PostCode){
+        await this.enterCompanyPostCode(objCompanyData.PostCode);
+    }
 
-        await this.fillInputBox(companiesLocators.txtStateNCountry,objCompanyData.SateNCountry);
-
-        await this.fillInputBox(companiesLocators.txtPostCode,objCompanyData.PostCode);
-
-        await this.selectItemFromDropdown(companiesLocators.btnAddressCountry,commonLocators.listDropDown,objCompanyData.AddressCountry);
-
-        await this.clickOnElement(companiesLocators.btnAddressAdd);
-
+    if(objCompanyData.AddressCountry){
+        await this.enterCompanyAddressCountry(objCompanyData.AddressCountry);
     }
 
     if(objCompanyData.Phone)
@@ -145,6 +181,8 @@ async createCompany(objCompanyData)
 
         await this.waitForSomeTime(10);
 
+        await this.checkPageHeader(objCompanyData.Name);
+
     }
 
 
@@ -163,18 +201,32 @@ async createCompany(objCompanyData)
             
     }
 
-    async deleteCompany()
-    {
-        await this.selectEntity(configprop.NavCompanies);
+    // async deleteCompany(cName)
+    // {
 
-        await this.deleteRecord(strCompanyName);
+    //     await this.deleteRecord(cName);
 
-        await this.waitForLoadState(configprop.waitStatedomcontentloaded);
+    //     // await this.waitForLoadState(configprop.waitStatedomcontentloaded);
 
-        await this.waitForLoadState(configprop.waitStatenetworkidle);
+    //     // await this.waitForLoadState(configprop.waitStatenetworkidle);
 
-        await this.checkRecordNotDisplayed(strCompanyName);
+    //     await this.waitForSomeTime(2);
 
+    //     await this.checkRecordNotDisplayed(cName);
+
+    // }
+
+    async deleteAndPurge(cName){
+
+        await this.deleteRecord(cName);
+
+        await this.waitForSomeTime(2);
+
+        await this.checkRecordNotDisplayed(cName);
+
+        await this.rubbishBin("Company", cName, "Purge", "OK");
+
+        await this.checkRecordNotDisplayed(cName);
     }
    
 } 

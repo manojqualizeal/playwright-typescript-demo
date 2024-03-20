@@ -68,7 +68,7 @@ class playwrightUtil {
     await this.page.waitForSelector(selector);
   }
 
-  async waitForSelector1(selector,timeInSeconds)
+  async waitForSelector(selector,timeInSeconds)
   {
     await this.page.waitForSelector(selector,{ timeout: timeInSeconds * 1000,});
   }

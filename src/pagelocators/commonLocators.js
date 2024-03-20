@@ -23,3 +23,8 @@ export const btnSave = "//button[contains(text(),'Save') and @class='ui linkedin
 export const btnCreate = "//button[contains(text(),'Create') and @class='ui linkedin button']";
 export const btnTopHeaderMenuSettings = "//body/div[@id='ui']/div[@class='ui fluid container']/div[@class='ui fluid container']/div[@id='top-header-menu']/div[@class='right menu']/div[@class='ui buttons']/div[@role='listbox']/i[@class='settings icon']";
 export const lnkHome = ".home.icon";
+
+export const rubbishBinIcon = "//button[@class='ui basic button item']";
+export const pageNamePath = "//div[@class='ui menu']/a[text()='%s']";
+export const valueNamePath = "//td/a[text()='%s']/ancestor::tr//td[@class='collapsing']";
+export const rubbishBinOperation = "//button[text()='%s Selected']";

@@ -47,14 +47,14 @@ class applicationGeneric extends playwrightUtil {
         }
 
          //Wait for the selector
-         await this.waitForSelector1(selector,configprop.MEDIUM_TIMEOUT);
+         await this.waitForSelector(selector,configprop.MEDIUM_TIMEOUT);
     
-       if(operation.toLowerCase() === "check")
-       {
+       if(operation.toLowerCase() === "check"){
 
-        await this.checkElement(selector);
+            await this.checkElement(selector);
 
-       }else{      
+       }
+       else{      
 
         await this.clickOnElement(selector);
        }
@@ -66,7 +66,7 @@ class applicationGeneric extends playwrightUtil {
         const selector = commonLocators.popUpOperation.replace('%s',strOperationName);
         
         //Wait for the selector
-        await this.waitForSelector1(selector,configprop.MEDIUM_TIMEOUT);
+        await this.waitForSelector(selector,configprop.MEDIUM_TIMEOUT);
 
         await this.clickOnElement(selector);
     }
@@ -128,7 +128,7 @@ class applicationGeneric extends playwrightUtil {
 
                 await this.waitForSomeTime(1);
 
-                await this.waitForSelector1(strListSelector,20);
+                await this.waitForSelector(strListSelector,20);
 
                 // locator for suggested values
                 const options = this.page.locator(strListSelector);
@@ -167,14 +167,14 @@ class applicationGeneric extends playwrightUtil {
         }
 
 
-async selectValueFromAutoCompleteSearch(strSearchBoxSelector,strvalue,timeInSeconds)
+async selectValueFromAutoCompleteSearch(strSearchBoxSelector, strvalue, timeInSeconds)
       {
           let bFlag = false;
           try
             {
               await this.fillInputBox(strSearchBoxSelector,strvalue);
     
-              await this.waitForSelector1(commonLocators.listSearchCombox,timeInSeconds);
+              await this.waitForSelector(commonLocators.listSearchCombox,timeInSeconds);
   
               // locator for suggested values
               const options = this.page.locator(commonLocators.listSearchCombox);
@@ -228,6 +228,23 @@ async selectValueFromAutoCompleteSearch(strSearchBoxSelector,strvalue,timeInSeco
         await this.waitForSomeTime(5);
         await this.page.locator(identifier).press('Tab');
       }
+
+    async rubbishBin(pageName, valueName, purpose, popUpOperation){
+
+        await this.clickOnElement(commonLocators.rubbishBinIcon);
+        await this.waitForLoadState(configprop.waitStatedomcontentloaded);
+        await this.clickOnElement(commonLocators.pageNamePath.replace('%s', pageName));
+        await this.waitForLoadState(configprop.waitStatenetworkidle);
+        await this.clickOnElement(commonLocators.valueNamePath.replace('%s', valueName));
+        await this.clickOnElement(commonLocators.rubbishBinOperation.replace('%s', purpose));
+        await this.performActionsOnPopUp(popUpOperation);
+
+    }
+
+    async performActionsOnPopUp(popUpOperation){
+        await this.clickOnElement(commonLocators.popUpOperation.replace('%s', popUpOperation));
+        this.waitForSomeTime(2);
+    }
 
 } 
 export default applicationGeneric;

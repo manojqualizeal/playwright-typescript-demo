@@ -1,5 +1,5 @@
 export const btnPriority = "//label[text()='Priority']/following-sibling::div[@role='listbox']";
-export const txtTags = "//label[text()='Tags']//following-sibling::label/div[@role='combobox']//input";
+export const txtTags = "//div[@class='ui fluid multiple search selection dropdown']//input[@type='text']";
 export const txtName = "//label[text()='Name']/following-sibling::div//input";
 export const btnAccess = "//label[text()='Access']/following-sibling::div//button";
 export const btnAllowUsers = "//label[text()='Access']/following-sibling::div//div[@role='listbox']";

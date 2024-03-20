@@ -37,7 +37,9 @@ test.describe('@smoke: Login as a user and Verify login is successful',
 			await test.step(`Create Company`, async () =>
 			 {
 
-				await applicationGeneric.selectEntity(configprop.NavCompanies);
+				await companies.navigateToCompanies();
+
+				// await applicationGeneric.selectEntity(configprop.NavCompanies);
 
 				await applicationGeneric.createButton("Create new Company");
 
@@ -45,7 +47,11 @@ test.describe('@smoke: Login as a user and Verify login is successful',
 
 				await companies.createCompany(objCompanyData);
 
-				await companies.deleteCompany();
+				await companies.navigateToCompanies();
+
+				await companies.verifyCreatedCompany(objCompanyData.Name);
+
+				await companies.deleteAndPurge(objCompanyData.Name);
 
 
 	         })
