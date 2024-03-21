@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
-import * as locators from "../pagelocators/locators";
-import * as commonLocators from "../pagelocators/commonLocators";
+import * as locators from "../pageobjects/locators";
+import * as commonLocators from "../pageobjects/commonLocators";
 import playwrightUtil from "../utils/playwrightUtil";
 import * as configprop from "../utils/configProp";
 
@@ -9,6 +9,15 @@ class applicationGeneric extends playwrightUtil {
       super(page);
     }
 
+    generateString(length) {
+        let result = '';
+        const charactersLength = commonLocators.characters.length;
+        for ( let i = 0; i < length; i++ ) {
+            result += commonLocators.characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+
+        return result;
+    }
     async checkRecordDisplayed(strValue)
     {
         const selector = commonLocators.recordName.replace('%s',strValue);
@@ -19,6 +28,7 @@ class applicationGeneric extends playwrightUtil {
     {
         const selector = commonLocators.recordName.replace('%s',strValue);
         await this.verifyElementNotAttachedSoft(selector);
+        console.log("record is removed");
     }
 
     async performTableOperation(sSearchValue, operation) {
@@ -237,7 +247,9 @@ async selectValueFromAutoCompleteSearch(strSearchBoxSelector, strvalue, timeInSe
         await this.waitForLoadState(configprop.waitStatenetworkidle);
         await this.clickOnElement(commonLocators.valueNamePath.replace('%s', valueName));
         await this.clickOnElement(commonLocators.rubbishBinOperation.replace('%s', purpose));
+        await this.waitForLoadState(configprop.waitStatenetworkidle);
         await this.performActionsOnPopUp(popUpOperation);
+
 
     }
 

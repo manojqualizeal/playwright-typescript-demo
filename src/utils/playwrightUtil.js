@@ -248,7 +248,7 @@ class playwrightUtil {
 
   async verifyTextPresent(text) {
     
-    let selector = "//*[contains(text(),'" + text + "')]";
+    let selector = `//*[contains(text(),'" + ${text} + "')]`;
 
     //let selector = "//*[contains(text(),'safafa')]";
 

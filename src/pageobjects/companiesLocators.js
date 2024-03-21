@@ -25,10 +25,10 @@ export const btnStatus = "//label[text()='Status']/following-sibling::div[@role=
 export const btnSource = "//label[text()='Source']/following-sibling::div[@role='listbox']";
 export const btnCategory = "//label[text()='Category']/following-sibling::div[@role='listbox']";
 export const txtVatNumber = "input[name='vat_number']";
-export const txtIdentifier = "input[name='identifier']"
+export const txtIdentifier = "input[name='identifier']";
 
 
-
+export const LengthErrorMsg = "//div[@class='ui error floating icon message']";
 
 
 

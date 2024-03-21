@@ -1,19 +1,28 @@
 // @ts-check
-import {expect} from "@playwright/test";
-import test from '../fixtures/fixture'
-import * as locators from "../pagelocators/locators";
-import * as companiesLocators from "../pagelocators/companiesLocators";
-import * as commonLocators from "../pagelocators/commonLocators";
-import * as configprop from "../utils/configProp";
-import dataHandling from "../utils/dataHandling";
+import test from '../../fixtures/fixture';
+import * as locators from "../../pageobjects/locators";
+import * as companiesLocators from "../../pageobjects/companiesLocators";
+import * as commonLocators from "../../pageobjects/commonLocators";
+import * as configprop from "../../utils/configProp";
+import dataHandling from "../../utils/dataHandling";
+import { chromium } from '@playwright/test';
+
 
 let objReadData = new dataHandling();
 
+// test.use(chromium.override({
+// 	connect: async (options) => {
+// 	  const capabilities = {
+// 		// ... your LambdaTest options
+// 	  };
+// 	  options.wsEndpoint = `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`;
+// 	  return chromium.connect(options);
+// 	}
+//   }));
 
-test.describe('@smoke: Login as a user and Verify login is successful',
+test.describe('Create Company',
 	() => {
 		test('New Application', async ({
-			playwrightUtil,
 			applicationGeneric,
             loginPage,
 			companies

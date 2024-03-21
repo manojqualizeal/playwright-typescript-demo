@@ -2,6 +2,59 @@
 const { defineConfig, devices } = require('@playwright/test');
 import dotenv from "dotenv";
 
+const { chromium } = require('playwright')
+const cp = require('child_process');
+const playwrightClientVersion = cp.execSync('npx playwright --version').toString().trim().split(' ')[1];
+
+
+export const capabilities = {
+  'browserName': 'Chrome', // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
+  'browserVersion': 'latest',
+  'LT:Options': {
+    'platform': 'Windows 10',
+    'build': 'Playwright Single Build',
+    'name': 'Playwright Sample Test',
+    'user': "vignesh.ponna",
+    'accessKey': "TTcZMa4Yszygocm0Kjw5yZWfHK75z7vKgLdC45Rx7RWaw6rRjZ",
+    'network': true,
+    'video': true,
+    'console': true,
+    'tunnel': false, // Add tunnel configuration if testing locally hosted webpage
+    'tunnelName': '', // Optional
+    'geoLocation': '', // country code can be fetched from https://www.lambdatest.com/capabilities-generator/
+    'playwrightClientVersion': playwrightClientVersion
+  }
+}
+
+// const { test } = require('@playwright/test');
+
+// test.extend({
+//   // Custom fixture for remote browser connection
+//   async remoteBrowser({ playwright }, use) {
+//     const capabilities = {
+//       'browserName': 'Chrome', // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
+//       'browserVersion': 'latest',
+//       'LT:Options': {
+//         'platform': 'Windows 10',
+//         'build': 'Playwright Single Build',
+//         'name': 'Playwright Sample Test',
+//         'user': "vignesh.ponna",
+//         'accessKey': "TTcZMa4Yszygocm0Kjw5yZWfHK75z7vKgLdC45Rx7RWaw6rRjZ",
+//         'network': true,
+//         'video': true,
+//         'console': true,
+//         'tunnel': false, // Add tunnel configuration if testing locally hosted webpage
+//         'tunnelName': '', // Optional
+//         'geoLocation': '', // country code can be fetched from https://www.lambdatest.com/capabilities-generator/
+//         'playwrightClientVersion': playwrightClientVersion
+//       }
+//     };
+//     const browser = await playwright['chromium'].connect({
+//       wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`,
+//     });
+//     use(browser);
+//   },
+// });
 
 /**
  * Read environment variables from file.
@@ -22,6 +75,15 @@ dotenv.config({
 });
 
 module.exports = defineConfig({
+  webServer:[]
+
+  ,
+  // browser: async ({ playwright }) => {
+  //   const browser = await playwright.chromium.connect({ // Adjust browser type as needed
+  //     wsEndpoint: 'YOUR_WS_ENDPOINT_URL', // Replace with your actual wsEndpoint
+  //   });
+  //   return browser;
+  // },
   testDir: './src',
   /* Maximum time one test can run for. */
   timeout: 0,
@@ -61,6 +123,9 @@ module.exports = defineConfig({
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    // connectOptions: {
+    //   wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`,
+    // },
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
@@ -79,7 +144,7 @@ module.exports = defineConfig({
     /* This is for the screenshots (will be attached in the Reports) */
     //screenshot: 'on', // For every step
     // screenshot: 'off',
-    screenshot: 'on',
+    screenshot: 'only-on-failure',
     /* This is for recording the videos */
     //video:'off', // Do not record video.
     //video:'on', //Record video for each test.
@@ -89,11 +154,22 @@ module.exports = defineConfig({
     launchOptions:
     {
       //slowMo: 200
-    }
+    },
   },
 
   /* Configure projects for major browsers */
   projects: [
+    {
+      name: `chrome:latest:Windows 10@lambdatest`,
+      use: {
+        browserName: `chromium`,
+        channel: `chrome`,
+        headless: false,
+        screenshot: `on`,
+        video: `on`,
+        trace: `on`
+      }
+    },
     // {
     //   name: 'chromium',
     //   use: {
@@ -104,30 +180,30 @@ module.exports = defineConfig({
     //   // } 
     //  },
     // },
-    {
-      name: 'chrome',
-      use: {
-        //browserName: 'chromium',
-        //channel: 'chrome',
-        ...devices['Desktop Chrome'], channel: 'chrome',
-        headless: true,
-        //viewport: { width: 1720, height: 850 },
-        ignoreHTTPSErrors : true,
-        launchOptions:{
-          //args: ['--start-maximized','--window-position=-5,-5','--window-size=1920,1080'],
-          //args: ['--start-maximized','--window-position=-5,-5'],
-          //args: ['--start-fullscreen'],
-          //Working below
-          args:['--window-position=-5,-5','--window.devicePixelRatio=1.5','--no-incognito'],
-          //slowMo:100,
-          //args: ['--start-maximized'],
-          //args:['--window-position=-5,-5','--no-incognito'],
+    // {
+    //   name: 'chrome',
+    //   use: {
+    //     //browserName: 'chromium',
+    //     //channel: 'chrome',
+    //     ...devices['Desktop Chrome'], channel: 'chrome',
+    //     headless: false,
+    //     //viewport: { width: 1720, height: 850 },
+    //     ignoreHTTPSErrors : true,
+    //     launchOptions:{
+    //       //args: ['--start-maximized','--window-position=-5,-5','--window-size=1920,1080'],
+    //       //args: ['--start-maximized','--window-position=-5,-5'],
+    //       //args: ['--start-fullscreen'],
+    //       //Working below
+    //       args:['--window-position=-5,-5','--window.devicePixelRatio=1.5','--no-incognito'],
+    //       //slowMo:100,
+    //       //args: ['--start-maximized'],
+    //       //args:['--window-position=-5,-5','--no-incognito'],
      
-          //args: ['--auto-open-devtools-for-tabs']
-        }
-       },
+    //       //args: ['--auto-open-devtools-for-tabs']
+    //     }
+    //    },
        
-    },
+    // },
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'] },
@@ -138,7 +214,7 @@ module.exports = defineConfig({
     //   use: { ...devices['Desktop Safari'] },
     // },
 
-    /* Test against mobile viewports. */
+    // /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
     //   use: { ...devices['Pixel 5'] },
@@ -148,7 +224,7 @@ module.exports = defineConfig({
     //   use: { ...devices['iPhone 12'] },
     // },
 
-    /* Test against branded browsers. */
+    // /* Test against branded browsers. */
     // {
     //   name: 'Microsoft Edge',
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },

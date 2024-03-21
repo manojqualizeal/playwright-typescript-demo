@@ -1,7 +1,7 @@
 import { expect } from "@playwright/test";
-import * as locators from "../pagelocators/locators";
-import * as commonLocators from "../pagelocators/commonLocators";
-import * as login from "../pagelocators/login";
+import * as locators from "../pageobjects/locators";
+import * as commonLocators from "../pageobjects/commonLocators";
+import * as login from "../pageobjects/login";
 import playwrightUtil from "../utils/playwrightUtil";
 import applicationGeneric from "../pages/applicationGeneric"
 import * as configprop from "../utils/configProp";

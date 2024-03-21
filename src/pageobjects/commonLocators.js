@@ -28,3 +28,6 @@ export const rubbishBinIcon = "//button[@class='ui basic button item']";
 export const pageNamePath = "//div[@class='ui menu']/a[text()='%s']";
 export const valueNamePath = "//td/a[text()='%s']/ancestor::tr//td[@class='collapsing']";
 export const rubbishBinOperation = "//button[text()='%s Selected']";
+export const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+export const lengthErrorMsg = "//div[@class='ui error floating icon message']";
+export const inLineErrMsg = "//label[text() ='Name']/span[@class='inline-error-msg']";
