@@ -57,90 +57,90 @@ class contacts extends applicationGeneric {
     //     await this.selectItemFromDropdown(,commonLocators.listDropDown, addressCountry);
     // }
 
-    async enterDetails(objCompanyData){
+    async enterDetails(objContactData){
             //strCompanyName = Math.floor(Math.random() * (100000 - 10000) ) + 10000;
 
         //strCompanyName = strCompanyName.toString();
 
         // strCompanyName = this.getRndInteger(10000,100000);
-        // await this.fillInputBox(companiesLocators.txtName,objCompanyData.Name);
+        // await this.fillInputBox(companiesLocators.txtName,objContactData.Name);
         
-        if(objCompanyData.First_name){
-            await this.enterFirstName(objCompanyData.First_name);
+        if(objContactData.First_name){
+            await this.enterFirstName(objContactData.First_name);
         }
 
-        if(objCompanyData.Last_name){
-            await this.enterLastName(objCompanyData.Last_name);
+        if(objContactData.Last_name){
+            await this.enterLastName(objContactData.Last_name);
         }
 
-        if(objCompanyData.Middle_name){
-            await this.enterMiddleName(objCompanyData.Middle_name);
+        if(objContactData.Middle_name){
+            await this.enterMiddleName(objContactData.Middle_name);
         }
 
-        if(objCompanyData.Address_street){
-            await this.enterAddress(objCompanyData.Address_street);
+        if(objContactData.Address_street){
+            await this.enterAddress(objContactData.Address_street);
         }
 
-        if(objCompanyData.Address_city){
-            await this.enterCity(objCompanyData.Address_city);
+        if(objContactData.Address_city){
+            await this.enterCity(objContactData.Address_city);
         }
 
-        if(objCompanyData.Address_state){
-            await this.enterState(objCompanyData.Address_state);
+        if(objContactData.Address_state){
+            await this.enterState(objContactData.Address_state);
         }
 
-        if(objCompanyData.Zip){
-            await this.enterZip(objCompanyData.Zip);
+        if(objContactData.Zip){
+            await this.enterZip(objContactData.Zip);
         }
 
-        if(objCompanyData.Phone_Number)
+        if(objContactData.Phone_Number)
         {
-            // await this.selectItemFromDropdown(contactsLocators.btnPhoneCountry,commonLocators.listDropDown,objCompanyData.Phone);
+            // await this.selectItemFromDropdown(contactsLocators.btnPhoneCountry,commonLocators.listDropDown,objContactData.Phone);
 
-            if(objCompanyData.Phone_Number_Type)
+            if(objContactData.Phone_Number_Type)
             {
-                await this.fillInputBox(contactsLocators.phoneNumber, objCompanyData.Phone_Number);
+                await this.fillInputBox(contactsLocators.phoneNumber, objContactData.Phone_Number);
 
-                await this.fillInputBox(contactsLocators.phoneNumberType, objCompanyData.Phone_Number_Type);
+                await this.fillInputBox(contactsLocators.phoneNumberType, objContactData.Phone_Number_Type);
 
                 await this.clickOnElement(contactsLocators.btnPhoneAdd);
 
             }
         } 
 
-        if(objCompanyData.Email)
+        if(objContactData.Email)
         {
-            await this.fillInputBox(contactsLocators.txtEmail, objCompanyData.Email);
+            await this.fillInputBox(contactsLocators.txtEmail, objContactData.Email);
 
-            await this.fillInputBox(contactsLocators.txtEmailType, objCompanyData.EmailType);
+            await this.fillInputBox(contactsLocators.txtEmailType, objContactData.EmailType);
 
             await this.clickOnElement(contactsLocators.btnEmailAdd);
 
         }
 
-        // if(objCompanyData.Tags)
+        // if(objContactData.Tags)
         // {
-        //     await this.selectValueFromAutoCompleteSearch(contactsLocators.txtTags, objCompanyData.Tags, 10);
+        //     await this.selectValueFromAutoCompleteSearch(contactsLocators.txtTags, objContactData.Tags, 10);
         // }
 
-        if(objCompanyData.Status)
+        if(objContactData.Status)
         {
-            await this.selectItemFromDropdown(contactsLocators.btnStatus, commonLocators.listDropDown, objCompanyData.Status);
+            await this.selectItemFromDropdown(contactsLocators.btnStatus, commonLocators.listDropDown, objContactData.Status);
         }
 
-        if(objCompanyData.Source)
+        if(objContactData.Source)
         {
-            await this.selectItemFromDropdown(contactsLocators.btnSource, commonLocators.listDropDown, objCompanyData.Source);
+            await this.selectItemFromDropdown(contactsLocators.btnSource, commonLocators.listDropDown, objContactData.Source);
         }
 
-        if(objCompanyData.Category)
+        if(objContactData.Category)
         {
-            await this.selectItemFromDropdown(contactsLocators.btnCategory, commonLocators.listDropDown, objCompanyData.Category);
+            await this.selectItemFromDropdown(contactsLocators.btnCategory, commonLocators.listDropDown, objContactData.Category);
         }
 
-        if(objCompanyData.Identifier)
+        if(objContactData.Identifier)
         {
-            await this.fillInputBox(contactsLocators.txtIdentifier,objCompanyData.Identifier);
+            await this.fillInputBox(contactsLocators.txtIdentifier,objContactData.Identifier);
         }
     }
 
@@ -148,9 +148,9 @@ class contacts extends applicationGeneric {
         await this.clickOnElement(commonLocators.btnSave);
     }
 
-    async createContact(objCompanyData)
+    async createContact(objContactData)
     {
-        await this.enterDetails(objCompanyData);
+        await this.enterDetails(objContactData);
 
         //after filling data
 
@@ -162,7 +162,7 @@ class contacts extends applicationGeneric {
 
         await this.waitForSomeTime(10);
 
-        await this.checkPageHeader(objCompanyData.First_name + " " + objCompanyData.Last_name);
+        await this.checkPageHeader(objContactData.First_name + " " + objContactData.Last_name);
 
     }
 
