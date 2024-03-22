@@ -52,7 +52,7 @@ test.describe('create company with max length',
 
                 await companies.save();
 
-                await companies.verifyCompanyFieldLength();
+                await companies.verifyCompanyFieldLength(applicationconstants.errorMessageForLengthCompanies);
 
 				
 

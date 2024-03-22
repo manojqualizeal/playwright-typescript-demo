@@ -28,7 +28,7 @@ const playwrightClientVersion = cp.execSync('npx playwright --version').toString
     wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`
   })
 
-  const page = await browser.newPage()
+  const page = await browser.newPage();
 
   await page.goto("https://duckduckgo.com");
 

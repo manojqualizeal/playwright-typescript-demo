@@ -10,23 +10,16 @@ import { chromium } from '@playwright/test';
 
 let objReadData = new dataHandling();
 
-// test.use(chromium.override({
-// 	connect: async (options) => {
-// 	  const capabilities = {
-// 		// ... your LambdaTest options
-// 	  };
-// 	  options.wsEndpoint = `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`;
-// 	  return chromium.connect(options);
-// 	}
-//   }));
 
-test.describe('Create Company',
+test.describe('@smoke Create Company',
 	() => {
-		test('New Application', async ({
+		test('Create Company', async ({
 			applicationGeneric,
             loginPage,
 			companies
 		}) => {
+			const objCompanyData = await objReadData.readSingleRowtestdataFromExcel("CRM.xlsx","Companies","TC1");
+
                 await test.step(`Open the URL and Enter Username and Password & Verify the user is logged in`, async () => 
 				{
 
@@ -40,7 +33,7 @@ test.describe('Create Company',
 
 					// await playwrightUtil.waitForSomeTime(10);
 
-      
+ 
 			})
 
 			await test.step(`Create Company`, async () =>
@@ -52,18 +45,17 @@ test.describe('Create Company',
 
 				await applicationGeneric.createButton("Create new Company");
 
-				const objCompanyData = await objReadData.readSingleRowtestdataFromExcel("CRM.xlsx","Companies","TC1");
-
 				await companies.createCompany(objCompanyData);
 
 				await companies.navigateToCompanies();
 
 				await companies.verifyCreatedCompany(objCompanyData.Name);
 
-				await companies.deleteAndPurge(objCompanyData.Name);
-
 
 	         })
+			await test.step(`delete and purge`, async()=>{
+				await companies.deleteAndPurge(objCompanyData.Name);
+			})
 
     });
 });

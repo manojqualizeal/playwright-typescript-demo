@@ -10,6 +10,7 @@ export const LONG_TIMEOUT = 45;
 export const NavHome = 'Home';
 export const NavCalendar = 'Calendar';
 export const NavCompanies = 'Companies';
+export const NavContacts = 'Contacts';
 export const NavDeals = 'Deals';
 export const NavTasks = 'Tasks';
 export const NavCases = 'Cases';

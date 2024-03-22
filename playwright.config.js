@@ -160,11 +160,11 @@ module.exports = defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: `chrome:latest:Windows 10@lambdatest`,
+      name: `chrome`,
       use: {
         browserName: `chromium`,
         channel: `chrome`,
-        headless: false,
+        headless:false,
         screenshot: `on`,
         video: `on`,
         trace: `on`

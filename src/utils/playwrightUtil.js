@@ -18,6 +18,9 @@ class playwrightUtil {
     await this.page.pause();
   }
 
+  async reload(){
+	await this.page.reload();
+  }
 
   // async isElementDisplayed(selector) {
   //   const element = await this.page.$(selector);

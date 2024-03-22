@@ -29,6 +29,9 @@ test.describe('create company with max length',
             loginPage,
 			companies
 		}) => {
+
+			const objCompanyData = await objReadData.readSingleRowtestdataFromExcel("CRM.xlsx","Companies","TC1");
+
                 await test.step(`Open the URL and Enter Username and Password & Verify the user is logged in`, async () => 
 				{
 
@@ -43,32 +46,37 @@ test.describe('create company with max length',
 					// await playwrightUtil.waitForSomeTime(10);
 
       
-			})
+				});
 
-			await test.step(`Create Company`, async () =>
-			 {
+				await test.step(`Create Company`, async () =>
+				{
 
-				await companies.navigateToCompanies();
+					await companies.navigateToCompanies();
 
-				// await applicationGeneric.selectEntity(configprop.NavCompanies);
+					// await applicationGeneric.selectEntity(configprop.NavCompanies);
 
-				await applicationGeneric.createButton("Create new Company");
+					await applicationGeneric.createButton("Create new Company");
 
-				const objCompanyData = await objReadData.readSingleRowtestdataFromExcel("CRM.xlsx","Companies","TC1");
+					const objCompanyData = await objReadData.readSingleRowtestdataFromExcel("CRM.xlsx","Companies","TC1");
 
-				objCompanyData.Name = companies.generateString(applicationconstants.companyMaxLength);
+					objCompanyData.Name = companies.generateString(applicationconstants.companyMaxLength);
 
-                await companies.createCompany(objCompanyData);
+					await companies.createCompany(objCompanyData);
 
-				await companies.navigateToCompanies();
+					await companies.navigateToCompanies();
 
-				await companies.verifyCreatedCompany(objCompanyData.Name);
-
-				await companies.deleteAndPurge(objCompanyData.Name);
+					await companies.verifyCreatedCompany(objCompanyData.Name);
 
 
-	         })
+		         });
 
+				await test.step(`delete and purge`, async()=>{
+
+					await companies.deleteAndPurge(objCompanyData.Name);
+					
+				})
+
+			
     });
 });
 

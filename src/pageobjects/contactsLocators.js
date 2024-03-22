@@ -1,0 +1,26 @@
+export const lengthErrorMsg = "//div[@class='ui error floating icon message']";
+export const txtFirstName = "//input[@name='first_name']";
+export const txtLastName = "//input[@name='last_name']";
+export const txtMiddleName = "//input[@name='middle_name']";
+export const optAddCompany = "//div[@name='company'][@role='combobox']//div[@class='selected item addition']";
+export const txtCompany = "//div[@name='company']/input";
+export const txtEmail = "//input[@placeholder='Email address']";
+export const txtEmailType = "//input[@placeholder='Personal email, Business, Alt...']";
+export const btnEmailAdd = "//label[text()='Email']/following-sibling::div//button";
+export const address = "//input[@name='address']";
+export const city = "//input[@name='city']";
+export const state = "//input[@name='state']";
+export const zip = "//input[@name='state']";
+export const txtTags = "//div[@class='ui fluid multiple search selection dropdown']";
+export const phoneNumber = "//input[@placeholder='Number']";
+export const phoneNumberType = "//input[@placeholder='Home, Work, Mobile...']";
+export const btnPhoneAdd = "//div[@class='four fields']//button[@class='ui tiny basic icon button']";
+export const lblPageHeader = "//div[contains(@class,'ui header']";
+export const lblInlineErrMsgFirstName = "//label[text( ='First Name']/span[@class='inline-error-msg']";
+export const lblInlineErrMsgLastName = "//label[text( ='Last Name']/span[@class='inline-error-msg']";
+export const txtIdentifier = "//input[@name='identifier']";
+export const btnCategory = "//div[@name='category']//div[@role='alert'][normalize-space()='Select']";
+export const btnSource = "//label[text()='Source']/following-sibling::div[@role='listbox']";
+export const btnStatus = "//label[text()='Status']/following-sibling::div[@role='listbox']";
+
+export const inLineErrMsg = "//span[@class='inline-error-msg']";

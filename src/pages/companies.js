@@ -7,6 +7,7 @@ import applicationGeneric from "./applicationGeneric"
 import * as configprop from "../utils/configProp";
 import * as companiesLocators from "../pageobjects/companiesLocators";
 import * as applicationconstants from "../utils/applicationconstants";
+import { text } from "stream/consumers";
 
 class companies extends applicationGeneric {
     constructor(page) {
@@ -239,12 +240,12 @@ class companies extends applicationGeneric {
         await this.waitForSomeTime(2);
     }
 
-    async verifyMandatoryField(){
-        await this.verifyToHaveText(commonLocators.inLineErrMsg, applicationconstants.errorMessageForMandatoryFieldNameCompany);
+    async verifyMandatoryField(text){
+        await this.verifyToHaveText(commonLocators.inLineErrMsg, text);
     }
 
-    async verifyCompanyFieldLength(){
-        await this.verifyToHaveText(commonLocators.lengthErrorMsg, applicationconstants.errorMessageForLengthCompanies);
+    async verifyCompanyFieldLength(text){
+        await this.verifyToHaveText(commonLocators.lengthErrorMsg, text);
     }
    
 } 

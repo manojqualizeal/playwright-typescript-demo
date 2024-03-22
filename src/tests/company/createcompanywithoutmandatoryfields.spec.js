@@ -5,6 +5,7 @@ import * as companiesLocators from "../../pageobjects/companiesLocators";
 import * as commonLocators from "../../pageobjects/commonLocators";
 import * as configprop from "../../utils/configProp";
 import dataHandling from "../../utils/dataHandling";
+import * as applicationconstants from "../../utils/applicationconstants";
 import { chromium } from '@playwright/test';
 
 
@@ -60,7 +61,7 @@ test.describe('Create Company',
 
 				await companies.save();
 
-                await companies.verifyMandatoryField();
+                await companies.verifyMandatoryField(applicationconstants.errorMessageForMandatoryFieldNameCompany);
 
 
 	         })
