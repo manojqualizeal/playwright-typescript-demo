@@ -2,60 +2,6 @@
 const { defineConfig, devices } = require('@playwright/test');
 import dotenv from "dotenv";
 
-const { chromium } = require('playwright')
-const cp = require('child_process');
-const playwrightClientVersion = cp.execSync('npx playwright --version').toString().trim().split(' ')[1];
-
-
-export const capabilities = {
-  'browserName': 'Chrome', // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
-  'browserVersion': 'latest',
-  'LT:Options': {
-    'platform': 'Windows 10',
-    'build': 'Playwright Single Build',
-    'name': 'Playwright Sample Test',
-    'user': "vignesh.ponna",
-    'accessKey': "TTcZMa4Yszygocm0Kjw5yZWfHK75z7vKgLdC45Rx7RWaw6rRjZ",
-    'network': true,
-    'video': true,
-    'console': true,
-    'tunnel': false, // Add tunnel configuration if testing locally hosted webpage
-    'tunnelName': '', // Optional
-    'geoLocation': '', // country code can be fetched from https://www.lambdatest.com/capabilities-generator/
-    'playwrightClientVersion': playwrightClientVersion
-  }
-}
-
-// const { test } = require('@playwright/test');
-
-// test.extend({
-//   // Custom fixture for remote browser connection
-//   async remoteBrowser({ playwright }, use) {
-//     const capabilities = {
-//       'browserName': 'Chrome', // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
-//       'browserVersion': 'latest',
-//       'LT:Options': {
-//         'platform': 'Windows 10',
-//         'build': 'Playwright Single Build',
-//         'name': 'Playwright Sample Test',
-//         'user': "vignesh.ponna",
-//         'accessKey': "TTcZMa4Yszygocm0Kjw5yZWfHK75z7vKgLdC45Rx7RWaw6rRjZ",
-//         'network': true,
-//         'video': true,
-//         'console': true,
-//         'tunnel': false, // Add tunnel configuration if testing locally hosted webpage
-//         'tunnelName': '', // Optional
-//         'geoLocation': '', // country code can be fetched from https://www.lambdatest.com/capabilities-generator/
-//         'playwrightClientVersion': playwrightClientVersion
-//       }
-//     };
-//     const browser = await playwright['chromium'].connect({
-//       wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`,
-//     });
-//     use(browser);
-//   },
-// });
-
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv

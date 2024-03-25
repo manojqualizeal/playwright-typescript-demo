@@ -12,16 +12,6 @@ import { chromium } from '@playwright/test';
 
 let objReadData = new dataHandling();
 
-// test.use(chromium.override({
-// 	connect: async (options) => {
-// 	  const capabilities = {
-// 		// ... your LambdaTest options
-// 	  };
-// 	  options.wsEndpoint = `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`;
-// 	  return chromium.connect(options);
-// 	}
-//   }));
-
 test.describe('create company with max length',
 	() => {
 		test('New Application', async ({
@@ -79,16 +69,3 @@ test.describe('create company with max length',
 			
     });
 });
-
-
-
-
-// test('get started link', async ({ page }) => {
-//   await page.goto('https://playwright.dev/');
-
-//   // Click the get started link.
-//   await page.getByRole('link', { name: 'Get started' }).click();
-
-//   // Expects page to have a heading with the name of Installation.
-//   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-// });
