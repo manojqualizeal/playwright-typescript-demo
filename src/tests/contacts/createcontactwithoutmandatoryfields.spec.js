@@ -13,7 +13,7 @@ import * as applicationconstants from "../../utils/applicationconstants";
 let objReadData = new dataHandling();
 
 
-test.describe('@smoke Create Contact',
+test.describe('@contact Create Contact',
 	() => {
 		test('Create Contact with max length', async ({
 			applicationGeneric,

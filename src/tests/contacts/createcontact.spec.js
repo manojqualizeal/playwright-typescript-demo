@@ -11,7 +11,7 @@ import { chromium } from '@playwright/test';
 let objReadData = new dataHandling();
 
 
-test.describe('@smoke Create Contact',
+test.describe('@contact Create Contact',
 	() => {
 		test('Create Contact', async ({
 			applicationGeneric,

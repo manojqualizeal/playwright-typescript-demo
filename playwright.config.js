@@ -24,12 +24,6 @@ module.exports = defineConfig({
   webServer:[]
 
   ,
-  // browser: async ({ playwright }) => {
-  //   const browser = await playwright.chromium.connect({ // Adjust browser type as needed
-  //     wsEndpoint: 'YOUR_WS_ENDPOINT_URL', // Replace with your actual wsEndpoint
-  //   });
-  //   return browser;
-  // },
   testDir: './src',
   /* Maximum time one test can run for. */
   timeout: 0,
@@ -116,15 +110,6 @@ module.exports = defineConfig({
         trace: `on`
       }
     },
-    // {
-    //   name: 'chromium',
-    //   use: {
-    //     ...devices['Desktop Chrome'],
-    //     //viewport: {width: 1920, height: 2160 },
-    //   //   launchOptions: {
-    //   //     args: ["--start-maximized"]
-    //   // } 
-    //  },
     // },
     // {
     //   name: 'chrome',
