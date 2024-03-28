@@ -14,7 +14,6 @@ let objReadData = new dataHandling();
 test.describe('@company Create Company',
 	() => {
 		test('Create Company', async ({
-			applicationGeneric,
             loginPage,
 			companies
 		}) => {
@@ -43,7 +42,7 @@ test.describe('@company Create Company',
 
 				// await applicationGeneric.selectEntity(configprop.NavCompanies);
 
-				await applicationGeneric.createButton("Create new Company");
+				await companies.createButton("Create new Company");
 
 				await companies.createCompany(objCompanyData);
 
