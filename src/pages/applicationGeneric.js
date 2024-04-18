@@ -128,7 +128,7 @@ class applicationGeneric extends playwrightUtil {
 
     }
 
-      async selectItemFromDropdown(StrbtnSelector,strListSelector,strDropDownvalue)
+      async selectItemFromDropdown(StrbtnSelector, strListSelector, strDropDownvalue)
         {
             let bFlag = false;
             try

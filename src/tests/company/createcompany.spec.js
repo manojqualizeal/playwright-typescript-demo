@@ -17,8 +17,8 @@ test.describe('@company Create Company',
             loginPage,
 			companies
 		}) => {
-			const objCompanyData = await objReadData.readSingleRowtestdataFromExcel("CRM.xlsx","Companies","TC1");
-
+			// const objCompanyData = await objReadData.readSingleRowtestdataFromExcel("CRM.xlsx","Companies","TC1");
+			const objCompanyData = objReadData.getData("Company");
                 await test.step(`Open the URL and Enter Username and Password & Verify the user is logged in`, async () => 
 				{
 

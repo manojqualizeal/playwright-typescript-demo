@@ -88,7 +88,7 @@ class companies extends applicationGeneric {
 
         if(objCompanyData.Phone)
         {
-            await this.selectItemFromDropdown(companiesLocators.btnPhoneCountry,commonLocators.listDropDown,objCompanyData.Phone);
+            // await this.selectItemFromDropdown(companiesLocators.btnPhoneCountry, commonLocators.listDropDown, objCompanyData.Phone);
 
             if(objCompanyData.Number)
             {
