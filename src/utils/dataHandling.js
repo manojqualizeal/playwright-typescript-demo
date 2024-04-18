@@ -110,34 +110,7 @@ class dataHandling{
             throw new Error(error.message);
         }
     }
-    async getFakeCompanyData(){
-        return {
-            Name: faker.company.name(),
-            URL: faker.internet.url(),
-            StreetAddress: faker.location.street(),
-            City: faker.location.city(),
-            SateNCountry: faker.location.state({ abbreviated: false }),
-            AddressCountry: faker.location.country(),
-            PostCode: faker.location.zipCode(),
-            Phone: faker.location.country(),
-            Number: faker.phone.number(),
-            PhoneType: faker.finance.transactionType(),
-            Email: faker.internet.email(),
-            EmailType: faker.helpers.arrayElement(['Personal email', 'Business']),
-            Tags: faker.lorem.word(),
-            Description: faker.lorem.paragraph(),
-            Industry: faker.company.name(),
-            NoOfEmp: faker.number.int({ min: 1000000 }), // Adjust max number as needed
-            StockSymbol: faker.lorem.word(),
-            Annual_revenue: faker.number.int({ min: 10000, max: 1000000 }), // Adjust range as needed
-            Priority: faker.helpers.arrayElement(['High', 'Medium', 'Low']),
-            Status: faker.helpers.arrayElement(['New', 'Active', 'Inactive', 'On Hold', 'Terminated', 'Hot']),
-            Category: faker.helpers.arrayElement(['Client', 'Partner', 'Prospect']),
-            Source: faker.helpers.arrayElement(['Ad', 'Referral', 'Customer', 'Partner', 'Event', 'Internet', 'Walk in', 'Call in', 'Email', 'Web Service', 'Import']),
-            VATNumber: faker.number.int({ min: 100000000, max: 9999999999 }),
-            Identifier: faker.lorem.word(),
-          };
-    }
+
     getData(fieldName){    
         if(fieldName == "Company"){
             return {
@@ -165,8 +138,8 @@ class dataHandling{
                 Source: faker.helpers.arrayElement(['Ad', 'Referral', 'Customer', 'Partner', 'Event', 'Internet', 'Walk in', 'Call in', 'Email', 'Web Service', 'Import']),
                 VATNumber: faker.number.int({ min: 100000000, max: 9999999999 }).toString(),
                 Identifier: faker.lorem.word(),
-        };
-    }
+            };
+        }
         return {};
     }
 
