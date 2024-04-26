@@ -13,11 +13,13 @@ let objReadData = new dataHandling();
 
 test.describe('@company Create Company',
 	() => {
-		test('New Application', async ({
+		test('Create Company without Mandatory Fields', async ({
 			applicationGeneric,
             loginPage,
 			companies
 		}) => {
+			const objCompanyData = await objReadData.readSingleRowtestdataFromExcel("CRM.xlsx","Companies","TC1");
+
                 await test.step(`Open the URL and Enter Username and Password & Verify the user is logged in`, async () => 
 				{
 
@@ -42,8 +44,6 @@ test.describe('@company Create Company',
 				// await applicationGeneric.selectEntity(configprop.NavCompanies);
 
 				await applicationGeneric.createButton("Create new Company");
-
-				const objCompanyData = await objReadData.readSingleRowtestdataFromExcel("CRM.xlsx","Companies","TC1");
 
 				objCompanyData.Name = "";
                 

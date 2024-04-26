@@ -14,7 +14,7 @@ let objReadData = new dataHandling();
 
 test.describe('@company create company with max length',
 	() => {
-		test('New Application', async ({
+		test('Create Company with Max Length', async ({
 			applicationGeneric,
             loginPage,
 			companies
@@ -46,8 +46,6 @@ test.describe('@company create company with max length',
 					// await applicationGeneric.selectEntity(configprop.NavCompanies);
 
 					await applicationGeneric.createButton("Create new Company");
-
-					const objCompanyData = await objReadData.readSingleRowtestdataFromExcel("CRM.xlsx","Companies","TC1");
 
 					objCompanyData.Name = companies.generateString(applicationconstants.companyMaxLength);
 
