@@ -1,9 +1,9 @@
-import ApplicationGeneric from '../pages/applicationGeneric'
-import PlaywrightUtil from '../utils/playwrightUtil'
-import LoginPage from '../pages/loginPage'
+import ApplicationGeneric from '../pages/application-generic'
+import PlaywrightUtil from '../utils/playwright-util'
+import LoginPage from '../pages/login-page'
 import Companies from '../pages/companies'
 import Contacts from '../pages/contacts'
-import capabilities from '../utils/configProp'
+import capabilities from '../utils/config-prop'
 
 const base = require('@playwright/test')
 const path = require('path')

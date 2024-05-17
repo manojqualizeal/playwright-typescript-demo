@@ -1,12 +1,12 @@
 import { expect } from "@playwright/test";
-import * as locators from "../pageobjects/locators";
-import * as commonLocators from "../pageobjects/commonLocators";
-import * as login from "../pageobjects/login";
-import playwrightUtil from "../utils/playwrightUtil";
-import applicationGeneric from "./applicationGeneric"
-import * as configprop from "../utils/configProp";
-import * as contactsLocators from "../pageobjects/contactsLocators";
-import * as applicationconstants from "../utils/applicationconstants";
+import * as locators from "../page-objects/locators";
+import * as commonLocators from "../page-objects/common-locators";
+import * as login from "../page-objects/login";
+import playwrightUtil from "../utils/playwright-util";
+import applicationGeneric from "./application-generic"
+import * as configprop from "../utils/config-prop";
+import * as contactsLocators from "../page-objects/contacts-locators";
+import * as applicationconstants from "../utils/application-constants";
 
 class contacts extends applicationGeneric {
      constructor(page) {

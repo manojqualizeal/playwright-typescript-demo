@@ -1,8 +1,8 @@
 import { expect } from "@playwright/test";
-import * as locators from "../pageobjects/locators";
-import * as commonLocators from "../pageobjects/commonLocators";
-import playwrightUtil from "../utils/playwrightUtil";
-import * as configprop from "../utils/configProp";
+import * as locators from "../page-objects/locators";
+import * as commonLocators from "../page-objects/common-locators";
+import playwrightUtil from "../utils/playwright-util";
+import * as configprop from "../utils/config-prop";
 
 class applicationGeneric extends playwrightUtil {
     constructor(page) {

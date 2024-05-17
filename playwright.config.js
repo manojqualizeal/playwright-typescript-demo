@@ -63,6 +63,15 @@ module.exports = defineConfig({
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+        // All requests we send go to this API endpoint.
+        baseURL: process.env.API_URL,
+        extraHTTPHeaders: {
+          // We set this header per GitHub guidelines.
+          'Accept': 'application/json',
+          // Add authorization token to all requests.
+          // Assuming personal access token available in the environment.
+          'Authorization': `token ${process.env.API_TOKEN}`,
+        },
     // connectOptions: {
     //   wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`,
     // },

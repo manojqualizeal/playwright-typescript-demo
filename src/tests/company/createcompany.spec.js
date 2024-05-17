@@ -1,10 +1,10 @@
 // @ts-check
 import test from '../../fixtures/fixture';
-import * as locators from "../../pageobjects/locators";
-import * as companiesLocators from "../../pageobjects/companiesLocators";
-import * as commonLocators from "../../pageobjects/commonLocators";
-import * as configprop from "../../utils/configProp";
-import dataHandling from "../../utils/dataHandling";
+import * as locators from "../../page-objects/locators";
+import * as companiesLocators from "../../page-objects/companies-locators";
+import * as commonLocators from "../../page-objects/common-locators";
+import * as configprop from "../../utils/config-prop";
+import dataHandling from "../../utils/data-handling";
 import { chromium } from '@playwright/test';
 
 
