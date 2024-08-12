@@ -3,10 +3,10 @@ import * as locators from "../page_objects/locators";
 import * as commonLocators from "../page_objects/common_locators";
 import * as login from "../page_objects/login";
 import playwrightUtil from "../utils/playwright_util";
-import applicationGeneric from "./application_generic"
+import ApplicationGeneric from "./application_generic"
 import * as configprop from "../utils/config_prop";
 
-class LoginPage extends applicationGeneric {
+class LoginPage extends ApplicationGeneric {
     constructor(page) {
         super(page);
     }

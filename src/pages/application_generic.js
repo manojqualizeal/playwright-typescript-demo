@@ -1,10 +1,10 @@
 import { expect } from "@playwright/test";
 import * as locators from "../page_objects/locators";
 import * as commonLocators from "../page_objects/common_locators";
-import playwrightUtil from "../utils/playwright_util";
+import PlaywrightUtil from "../utils/playwright_util";
 import * as configprop from "../utils/config_prop";
 
-class applicationGeneric extends playwrightUtil {
+class ApplicationGeneric extends PlaywrightUtil {
     constructor(page) {
         super(page);
     }
@@ -240,4 +240,4 @@ class applicationGeneric extends playwrightUtil {
     }
 
 }
-export default applicationGeneric;
+export default ApplicationGeneric;

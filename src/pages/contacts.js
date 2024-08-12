@@ -3,12 +3,12 @@ import * as locators from "../page_objects/locators";
 import * as commonLocators from "../page_objects/common_locators";
 import * as login from "../page_objects/login";
 import playwrightUtil from "../utils/playwright_util";
-import applicationGeneric from "./application_generic"
+import ApplicationGeneric from "./application_generic"
 import * as configprop from "../utils/config_prop";
 import * as contactsLocators from "../page_objects/contacts_locators";
 import * as applicationconstants from "../utils/application_constants";
 
-class contacts extends applicationGeneric {
+class Contacts extends ApplicationGeneric {
     constructor(page) {
         super(page);
     }
@@ -182,4 +182,4 @@ class contacts extends applicationGeneric {
     }
 
 }
-export default contacts;
+export default Contacts;

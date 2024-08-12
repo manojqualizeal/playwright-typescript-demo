@@ -2,14 +2,13 @@ import { expect } from "@playwright/test";
 import * as locators from "../page_objects/locators";
 import * as commonLocators from "../page_objects/common_locators";
 import * as login from "../page_objects/login";
-import playwrightUtil from "../utils/playwright_util";
-import applicationGeneric from "./application_generic"
+import ApplicationGeneric from "./application_generic"
 import * as configprop from "../utils/config_prop";
 import * as companiesLocators from "../page_objects/companies_locators";
 import * as applicationconstants from "../utils/application_constants";
 import { text } from "stream/consumers";
 
-class companies extends applicationGeneric {
+class Companies extends ApplicationGeneric {
     constructor(page) {
         super(page);
     }
@@ -232,4 +231,4 @@ class companies extends applicationGeneric {
     }
 
 }
-export default companies;
+export default Companies;
