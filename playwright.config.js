@@ -1,4 +1,3 @@
-// @ts-check
 const { defineConfig, devices } = require('@playwright/test');
 import dotenv from "dotenv";
 
@@ -21,7 +20,7 @@ dotenv.config({
 });
 
 module.exports = defineConfig({
-  webServer:[]
+  webServer: []
 
   ,
   testDir: './src',
@@ -49,7 +48,7 @@ module.exports = defineConfig({
   reporter: [
     //['dot'],
     //['line'],
-    ['list', {printSteps: true}],
+    ['list', { printSteps: true }],
     ['html'],
     [
       "allure-playwright",
@@ -63,15 +62,15 @@ module.exports = defineConfig({
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-        // All requests we send go to this API endpoint.
-        baseURL: process.env.API_URL,
-        extraHTTPHeaders: {
-          // We set this header per GitHub guidelines.
-          'Accept': 'application/json',
-          // Add authorization token to all requests.
-          // Assuming personal access token available in the environment.
-          'Authorization': `token ${process.env.API_TOKEN}`,
-        },
+    // All requests we send go to this API endpoint.
+    baseURL: process.env.API_URL,
+    extraHTTPHeaders: {
+      // We set this header per GitHub guidelines.
+      'Accept': 'application/json',
+      // Add authorization token to all requests.
+      // Assuming personal access token available in the environment.
+      'Authorization': `token ${process.env.API_TOKEN}`,
+    },
     // connectOptions: {
     //   wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`,
     // },
@@ -83,7 +82,7 @@ module.exports = defineConfig({
     navigationTimeout: 120 * 1000,
     headless: false,
 
-     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     //trace: 'on-first-retry',
     //trace: 'on',
     trace: 'retain-on-failure',
@@ -98,7 +97,7 @@ module.exports = defineConfig({
     //video:'off', // Do not record video.
     //video:'on', //Record video for each test.
     //video:'on-first-retry', // Record video only when retrying a test for the first time.
-    video:'retain-on-failure', //Record video for each test, but remove all videos from successful test runs.
+    video: 'retain-on-failure', //Record video for each test, but remove all videos from successful test runs.
     //video:'retry-with-video',
     launchOptions:
     {
@@ -113,7 +112,7 @@ module.exports = defineConfig({
       use: {
         browserName: `chromium`,
         channel: `chrome`,
-        headless:false,
+        headless: false,
         screenshot: `on`,
         video: `on`,
         trace: `on`
@@ -138,11 +137,11 @@ module.exports = defineConfig({
     //       //slowMo:100,
     //       //args: ['--start-maximized'],
     //       //args:['--window-position=-5,-5','--no-incognito'],
-     
+
     //       //args: ['--auto-open-devtools-for-tabs']
     //     }
     //    },
-       
+
     // },
     // {
     //   name: 'firefox',

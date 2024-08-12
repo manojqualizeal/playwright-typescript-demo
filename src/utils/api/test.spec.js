@@ -3,8 +3,8 @@ import CompanyAPI from "./company-api";
 import { test } from "@playwright/test";
 
 test.describe('@companyapi',
-	() => {
-        test("create", async ()=>{
+    () => {
+        test("create", async () => {
             const baseURL = process.env.API_URL;
             var companyAPI = new CompanyAPI(baseURL);
 
@@ -14,7 +14,7 @@ test.describe('@companyapi',
             const token = await companyAPI.getAuthToken(username, password);
             console.log("Token: " + token);
 
-            payload = {"name":"Naruto","description":"Alter amplexus adduco copia. Canto territo accendo sapiente animus volup. Quibusdam audentia calcar ipsam.","url":"https://wide-eyed-ethyl.net/","private":true,"rating":0,"tags":["volaticus"]}
+            const payload = { "name": "Naruto", "description": "Alter amplexus adduco copia. Canto territo accendo sapiente animus volup. Quibusdam audentia calcar ipsam.", "url": "https://wide-eyed-ethyl.net/", "private": true, "rating": 0, "tags": ["volaticus"] }
             const id = await companyAPI.createCompany(payload);
             console.log("Company is created with id: " + id);
 
@@ -24,6 +24,6 @@ test.describe('@companyapi',
 
             const deleteResponse = await companyAPI.deleteByID(id);
             console.log("Delete response is " + deleteResponse);
-        }); 
+        });
     });
 
