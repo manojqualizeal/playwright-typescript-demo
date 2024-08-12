@@ -1,12 +1,12 @@
-import BaseAPI from "./base-api";
+import BaseAPI from "./base_api";
 
 
 class CompanyAPI extends BaseAPI {
-  constructor(baseURL){
+  constructor(baseURL) {
     super(baseURL);
   }
 
-  async createCompany(payload){
+  async createCompany(payload) {
     const headers = {
       "content-type": "application/json",
       "Authorization": `Token ${this.token}`,
@@ -16,7 +16,7 @@ class CompanyAPI extends BaseAPI {
     return response.response.result.id;
   }
 
-  async getCompanyByID(id){
+  async getCompanyByID(id) {
     const headers = {
       "Authorization": `Token ${this.token}`,
     }
@@ -26,7 +26,7 @@ class CompanyAPI extends BaseAPI {
     return response;
   }
 
-  async deleteByID(id){
+  async deleteByID(id) {
     const headers = {
       "Authorization": `Token ${this.token}`,
     }
