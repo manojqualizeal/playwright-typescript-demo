@@ -13,11 +13,11 @@
     "post----test": "npx playwright show-report",
     "dot:report": "npx playwright test --reporter=dot",
     "line:report": "npx playwright test --reporter=line",
-    "allure:clean": "rm -rf allure-results",
     "allure-generate": "allure generate ./allure-results --clean -o allure-report",
     "allure:report": "npm run allure-generate && allure serve",
     "post---test": "allure generate allure-results --clean -o allure-report && allure open allure-report",
-    "test-1": "npx playwright test createcontact.spec.js"
+    "test-1": "npx playwright test createcontact.spec.js",
+    "allureClear": "if exist allure-results rmdir /q /s allure-results && mkdir allure-results && if exist allure-report rmdir /q /s allure-report && if exist cypress\\screenshots rmdir /q /s cypress\\screenshots && if exist cypress\\videos rmdir /q /s cypress\\videos"
   },
   "keywords": [
     "Plawright",

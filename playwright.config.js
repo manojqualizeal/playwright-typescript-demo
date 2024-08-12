@@ -108,7 +108,7 @@ module.exports = defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: `chrome@lambdatest`,
+      name: `chrome`,
       use: {
         browserName: `chromium`,
         channel: `chrome`,

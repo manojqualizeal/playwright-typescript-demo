@@ -1,4 +1,4 @@
-import CompanyAPI from "./company-api";
+import CompanyAPI from "./company_api";
 
 import { test } from "@playwright/test";
 
