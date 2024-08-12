@@ -1,183 +1,167 @@
 import { expect } from "@playwright/test";
-import * as locators from "../page-objects/locators";
-import * as commonLocators from "../page-objects/common-locators";
-import * as login from "../page-objects/login";
-import playwrightUtil from "../utils/playwright-util";
-import applicationGeneric from "./application-generic"
-import * as configprop from "../utils/config-prop";
-import * as companiesLocators from "../page-objects/companies-locators";
-import * as applicationconstants from "../utils/application-constants";
+import * as locators from "../page_objects/locators";
+import * as commonLocators from "../page_objects/common_locators";
+import * as login from "../page_objects/login";
+import playwrightUtil from "../utils/playwright_util";
+import applicationGeneric from "./application_generic"
+import * as configprop from "../utils/config_prop";
+import * as companiesLocators from "../page_objects/companies_locators";
+import * as applicationconstants from "../utils/application_constants";
 import { text } from "stream/consumers";
 
 class companies extends applicationGeneric {
-    constructor(page) {
-      super(page);
-    }
+    constructor(page) {
+        super(page);
+    }
 
-    async navigateToCompanies(){
+    async navigateToCompanies() {
         this.selectEntity(configprop.NavCompanies);
     }
 
-    async verifyCreatedCompany(companyName){
+    async verifyCreatedCompany(companyName) {
         this.checkRecordDisplayed(companyName);
     }
 
-    async enterCompanyName(companyName){
+    async enterCompanyName(companyName) {
         await this.fillInputBox(companiesLocators.txtName, companyName);
     }
 
-    async enterCompanyStreetAddress(streetAddress){
+    async enterCompanyStreetAddress(streetAddress) {
         await this.fillInputBox(companiesLocators.txtStreetAddress, streetAddress);
     }
 
-    async enterCompanyCity(city){
+    async enterCompanyCity(city) {
         await this.fillInputBox(companiesLocators.txtCity, city);
     }
 
-    async enterCompanySateNCountry(sateNCountry){
+    async enterCompanySateNCountry(sateNCountry) {
         await this.fillInputBox(companiesLocators.txtStateNCountry, sateNCountry);
     }
 
-    async enterCompanyPostCode(postCode){
+    async enterCompanyPostCode(postCode) {
         await this.fillInputBox(companiesLocators.txtPostCode, postCode);
     }
 
-    async enterCompanyAddressCountry(addressCountry){
-        await this.selectItemFromDropdown(companiesLocators.btnAddressCountry,commonLocators.listDropDown, addressCountry);
+    async enterCompanyAddressCountry(addressCountry) {
+        await this.selectItemFromDropdown(companiesLocators.btnAddressCountry, commonLocators.listDropDown, addressCountry);
     }
 
-    async enterDetails(objCompanyData){
-            //strCompanyName = Math.floor(Math.random() * (100000 - 10000) ) + 10000;
+    async enterDetails(objCompanyData) {
+        //strCompanyName = Math.floor(Math.random() * (100000 - 10000) ) + 10000;
 
         //strCompanyName = strCompanyName.toString();
 
         // strCompanyName = this.getRndInteger(10000,100000);
         // await this.fillInputBox(companiesLocators.txtName,objCompanyData.Name);
-        
-        if(objCompanyData.Name){
+
+        if (objCompanyData.Name) {
             await this.enterCompanyName(objCompanyData.Name);
         }
-    //     if(objCompanyData.Access)
-    //     {
-    //         
-    //         await this.clickOnElement(companiesLocators.btnAccess);
+        //     if(objCompanyData.Access)
+        //     {
+        //         
+        //         await this.clickOnElement(companiesLocators.btnAccess);
 
-    //         await this.selectItemFromDropdown(companiesLocators.btnAllowUsers,commonLocators.listDropDown,objCompanyData.Access);
+        //         await this.selectItemFromDropdown(companiesLocators.btnAllowUsers,commonLocators.listDropDown,objCompanyData.Access);
 
-    //     }
+        //     }
 
-        if(objCompanyData.StreetAddress){
+        if (objCompanyData.StreetAddress) {
             await this.enterCompanyStreetAddress(objCompanyData.StreetAddress);
         }
 
-        if(objCompanyData.City){
+        if (objCompanyData.City) {
             await this.enterCompanyCity(objCompanyData.City);
         }
 
-        if(objCompanyData.SateNCountry){
+        if (objCompanyData.SateNCountry) {
             await this.enterCompanySateNCountry(objCompanyData.SateNCountry);
         }
 
-        if(objCompanyData.PostCode){
+        if (objCompanyData.PostCode) {
             await this.enterCompanyPostCode(objCompanyData.PostCode);
         }
 
-        if(objCompanyData.AddressCountry){
+        if (objCompanyData.AddressCountry) {
             await this.enterCompanyAddressCountry(objCompanyData.AddressCountry);
         }
 
-        if(objCompanyData.Phone)
-        {
+        if (objCompanyData.Phone) {
             // await this.selectItemFromDropdown(companiesLocators.btnPhoneCountry, commonLocators.listDropDown, objCompanyData.Phone);
 
-            if(objCompanyData.Number)
-            {
-                await this.fillInputBox(companiesLocators.txtPhoneNumber,objCompanyData.Number);
+            if (objCompanyData.Number) {
+                await this.fillInputBox(companiesLocators.txtPhoneNumber, objCompanyData.Number);
 
-                await this.fillInputBox(companiesLocators.txtHomeNWorkNmobile,objCompanyData.PhoneType);
+                await this.fillInputBox(companiesLocators.txtHomeNWorkNmobile, objCompanyData.PhoneType);
 
                 await this.clickOnElement(companiesLocators.btnPhoneAdd);
 
             }
-        } 
+        }
 
-        if(objCompanyData.Email)
-        {
-            await this.fillInputBox(companiesLocators.txtEmail,objCompanyData.Email);
+        if (objCompanyData.Email) {
+            await this.fillInputBox(companiesLocators.txtEmail, objCompanyData.Email);
 
-            await this.fillInputBox(companiesLocators.txtEmailType,objCompanyData.EmailType);
+            await this.fillInputBox(companiesLocators.txtEmailType, objCompanyData.EmailType);
 
             await this.clickOnElement(companiesLocators.btnEmailAdd);
 
         }
 
-        if(objCompanyData.Tags)
-        {
-            await this.selectValueFromAutoCompleteSearch(companiesLocators.txtTags,objCompanyData.Tags,10);
+        if (objCompanyData.Tags) {
+            await this.selectValueFromAutoCompleteSearch(companiesLocators.txtTags, objCompanyData.Tags, 10);
         }
 
-        if(objCompanyData.Description)
-        {
-            await this.fillInputBox(companiesLocators.txtDescription,objCompanyData.Description);
+        if (objCompanyData.Description) {
+            await this.fillInputBox(companiesLocators.txtDescription, objCompanyData.Description);
         }
 
-        if(objCompanyData.Industry)
-        {
-            await this.fillInputBox(companiesLocators.txtIndustry,objCompanyData.Industry);
+        if (objCompanyData.Industry) {
+            await this.fillInputBox(companiesLocators.txtIndustry, objCompanyData.Industry);
         }
 
-        if(objCompanyData.NoOfEmp)
-        {
-            await this.fillInputBox(companiesLocators.txtNoOfEmployees,objCompanyData.NoOfEmp);
+        if (objCompanyData.NoOfEmp) {
+            await this.fillInputBox(companiesLocators.txtNoOfEmployees, objCompanyData.NoOfEmp);
         }
 
-        if(objCompanyData.StockSymbol)
-        {
-            await this.fillInputBox(companiesLocators.txtStockSymbol,objCompanyData.StockSymbol);
+        if (objCompanyData.StockSymbol) {
+            await this.fillInputBox(companiesLocators.txtStockSymbol, objCompanyData.StockSymbol);
         }
 
-        if(objCompanyData.AnnualRevenue)
-        {
-            await this.fillInputBox(companiesLocators.txtAnnualRevenue,objCompanyData.AnnualRevenue);
+        if (objCompanyData.AnnualRevenue) {
+            await this.fillInputBox(companiesLocators.txtAnnualRevenue, objCompanyData.AnnualRevenue);
         }
 
-        if(objCompanyData.Priority)
-        {
-            await this.selectItemFromDropdown(companiesLocators.btnPriority,commonLocators.listDropDown,objCompanyData.Priority);
+        if (objCompanyData.Priority) {
+            await this.selectItemFromDropdown(companiesLocators.btnPriority, commonLocators.listDropDown, objCompanyData.Priority);
         }
 
-        if(objCompanyData.Status)
-        {
-            await this.selectItemFromDropdown(companiesLocators.btnStatus,commonLocators.listDropDown,objCompanyData.Status);
+        if (objCompanyData.Status) {
+            await this.selectItemFromDropdown(companiesLocators.btnStatus, commonLocators.listDropDown, objCompanyData.Status);
         }
 
-        if(objCompanyData.Source)
-        {
-            await this.selectItemFromDropdown(companiesLocators.btnSource,commonLocators.listDropDown,objCompanyData.Source);
+        if (objCompanyData.Source) {
+            await this.selectItemFromDropdown(companiesLocators.btnSource, commonLocators.listDropDown, objCompanyData.Source);
         }
 
-        if(objCompanyData.Category)
-        {
-            await this.selectItemFromDropdown(companiesLocators.btnCategory,commonLocators.listDropDown,objCompanyData.Category);
+        if (objCompanyData.Category) {
+            await this.selectItemFromDropdown(companiesLocators.btnCategory, commonLocators.listDropDown, objCompanyData.Category);
         }
 
-        if(objCompanyData.VATNumber)
-        {
-            await this.fillInputBox(companiesLocators.txtVatNumber,objCompanyData.VATNumber);
+        if (objCompanyData.VATNumber) {
+            await this.fillInputBox(companiesLocators.txtVatNumber, objCompanyData.VATNumber);
         }
 
-        if(objCompanyData.Identifier)
-        {
-            await this.fillInputBox(companiesLocators.txtIdentifier,objCompanyData.Identifier);
+        if (objCompanyData.Identifier) {
+            await this.fillInputBox(companiesLocators.txtIdentifier, objCompanyData.Identifier);
         }
     }
 
-    async save(){
+    async save() {
         await this.clickOnElement(commonLocators.btnSave);
     }
 
-    async createCompany(objCompanyData)
-    {
+    async createCompany(objCompanyData) {
         await this.enterDetails(objCompanyData);
 
         //after filling data
@@ -196,18 +180,17 @@ class companies extends applicationGeneric {
 
 
 
-    async editCompany(strCompany,objCompanyData)
-    {
+    async editCompany(strCompany, objCompanyData) {
         await this.selectEntity(configprop.NavCompanies);
 
-        await this.performTableOperation(strCompany,configprop.operationEditType);
+        await this.performTableOperation(strCompany, configprop.operationEditType);
 
         await this.waitForLoadState(configprop.waitStatedomcontentloaded);
 
         await this.waitForLoadState(configprop.waitStatenetworkidle);
 
         await this.createCompany(objCompanyData);
-            
+
     }
 
     // async deleteCompany(cName)
@@ -225,7 +208,7 @@ class companies extends applicationGeneric {
 
     // }
 
-    async deleteAndPurge(cName){
+    async deleteAndPurge(cName) {
 
         await this.deleteRecord(cName);
 
@@ -240,13 +223,13 @@ class companies extends applicationGeneric {
         await this.waitForSomeTime(2);
     }
 
-    async verifyMandatoryField(text){
+    async verifyMandatoryField(text) {
         await this.verifyToHaveText(commonLocators.inLineErrMsg, text);
     }
 
-    async verifyCompanyFieldLength(text){
+    async verifyCompanyFieldLength(text) {
         await this.verifyToHaveText(commonLocators.lengthErrorMsg, text);
     }
-   
-} 
+
+}
 export default companies;

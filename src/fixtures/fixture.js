@@ -1,9 +1,9 @@
-import ApplicationGeneric from '../pages/application-generic'
-import PlaywrightUtil from '../utils/playwright-util'
-import LoginPage from '../pages/login-page'
+import ApplicationGeneric from '../pages/application_generic'
+import PlaywrightUtil from '../utils/playwright_util'
+import LoginPage from '../pages/login_page'
 import Companies from '../pages/companies'
 import Contacts from '../pages/contacts'
-import capabilities from '../utils/config-prop'
+import capabilities from '../utils/config_prop'
 
 const base = require('@playwright/test')
 const path = require('path')
@@ -14,12 +14,12 @@ const test = base.test.extend({
   playwrightUtil: async ({ page }, use) => {
     await use(new PlaywrightUtil(page))
   },
-  applicationGeneric: async ({ page }, use) => {        
-      await use(new ApplicationGeneric(page))
+  applicationGeneric: async ({ page }, use) => {
+    await use(new ApplicationGeneric(page))
   },
   loginPage: async ({ page }, use) => {
-      await use(new LoginPage(page))
-      },
+    await use(new LoginPage(page))
+  },
   companies: async ({ page }, use) => {
     await use(new Companies(page));
   },
@@ -33,9 +33,9 @@ const test = base.test.extend({
       capabilities['LT:Options']['name'] = `${testInfo.title} - ${fileName}`
       let device, context, browser, ltPage;
 
-        // Desktop test
-        browser = await chromium.connect(`wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`)
-        ltPage = await browser.newPage(testInfo.project.use)
+      // Desktop test
+      browser = await chromium.connect(`wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`)
+      ltPage = await browser.newPage(testInfo.project.use)
 
       await use(ltPage)
 
@@ -46,7 +46,7 @@ const test = base.test.extend({
           remark: testInfo.error?.stack || testInfo.error?.message,
         }
       }
-      await ltPage.evaluate(() => {},
+      await ltPage.evaluate(() => { },
         `lambdatest_action: ${JSON.stringify(testStatus)}`)
 
       await ltPage.close()

@@ -4,115 +4,109 @@ const path = require('path');
 import { faker } from '@faker-js/faker';
 
 
-class dataHandling{
+class dataHandling {
 
 
-    async readSingleRowtestdataFromExcel(strFileName,strSheetName,strTestCaseName)
-    {
-            try
-            {
-                
-                //const reader = require('xlsx')
-                //const fs = require('fs')
+    async readSingleRowtestdataFromExcel(strFileName, strSheetName, strTestCaseName) {
+        try {
 
-                // const path = require('path');
-                //   const fullPath = './test/test.txt';
+            //const reader = require('xlsx')
+            //const fs = require('fs')
 
-                //   const directoryName = path.dirname(fullPath);
-                //   const fileName = path.basename(fullPath);
+            // const path = require('path');
+            //   const fullPath = './test/test.txt';
 
-                //   console.log('Directory:', directoryName); // Output: /path/to
-                //   console.log('File:', fileName); // Output: myFile.txt
+            //   const directoryName = path.dirname(fullPath);
+            //   const fileName = path.basename(fullPath);
 
-                // Reading our test file
-                //const file = reader.readFile('./test.xlsx')
-                //let filePath = path.resolve('src')
-                //console.log(filePath1)
-                //const filePath = path.join(__dirname, 'testdata', strFileName);
+            //   console.log('Directory:', directoryName); // Output: /path/to
+            //   console.log('File:', fileName); // Output: myFile.txt
 
-                //console.log(filePath);
-                //const file = reader.readFile('./testdata/test.xlsx')
+            // Reading our test file
+            //const file = reader.readFile('./test.xlsx')
+            //let filePath = path.resolve('src')
+            //console.log(filePath1)
+            //const filePath = path.join(__dirname, 'testdata', strFileName);
 
-                let filePath = path.resolve('src')
+            //console.log(filePath);
+            //const file = reader.readFile('./testdata/test.xlsx')
 
-                filePath = path.join(filePath, 'testdata', strFileName);
+            let filePath = path.resolve('src')
 
-                console.log(filePath);
+            filePath = path.join(filePath, 'test_data', strFileName);
 
-                const file = reader.readFile(filePath);
+            console.log(filePath);
 
-                //console.log(file)
+            const file = reader.readFile(filePath);
 
-                //const sheets = file.SheetNames[0];
+            //console.log(file)
 
-                const sheet = file.Sheets[strSheetName];
-                //console.log(reader.utils.sheet_to_json(sheet))
+            //const sheets = file.SheetNames[0];
 
-                let temp1 = [];
+            const sheet = file.Sheets[strSheetName];
+            //console.log(reader.utils.sheet_to_json(sheet))
 
-                temp1 = reader.utils.sheet_to_json(sheet).filter(item => item.TestCaseName === strTestCaseName)
+            let temp1 = [];
 
-                return temp1[0];
-        } catch (error) 
-        {
-            throw new Error(error.message);
-        }
+            temp1 = reader.utils.sheet_to_json(sheet).filter(item => item.TestCaseName === strTestCaseName)
+
+            return temp1[0];
+        } catch (error) {
+            throw new Error(error.message);
+        }
     }
 
-    async readMulRowsTestdataFromExcel(strFileName,strSheetName,strTestCaseName)
-    {
-            try
-            {
-                
-                //const reader = require('xlsx')
-                //const fs = require('fs')
+    async readMulRowsTestdataFromExcel(strFileName, strSheetName, strTestCaseName) {
+        try {
 
-                // const path = require('path');
-                //   const fullPath = './test/test.txt';
+            //const reader = require('xlsx')
+            //const fs = require('fs')
 
-                //   const directoryName = path.dirname(fullPath);
-                //   const fileName = path.basename(fullPath);
+            // const path = require('path');
+            //   const fullPath = './test/test.txt';
 
-                //   console.log('Directory:', directoryName); // Output: /path/to
-                //   console.log('File:', fileName); // Output: myFile.txt
+            //   const directoryName = path.dirname(fullPath);
+            //   const fileName = path.basename(fullPath);
 
-                // Reading our test file
-                //const file = reader.readFile('./test.xlsx')
-                //let filePath = path.resolve('src')
-                //console.log(filePath1)
-                //const filePath = path.join(__dirname, 'testdata', strFileName);
+            //   console.log('Directory:', directoryName); // Output: /path/to
+            //   console.log('File:', fileName); // Output: myFile.txt
 
-                //console.log(filePath);
-                //const file = reader.readFile('./testdata/test.xlsx')
+            // Reading our test file
+            //const file = reader.readFile('./test.xlsx')
+            //let filePath = path.resolve('src')
+            //console.log(filePath1)
+            //const filePath = path.join(__dirname, 'testdata', strFileName);
 
-                let filePath = path.resolve('src')
+            //console.log(filePath);
+            //const file = reader.readFile('./testdata/test.xlsx')
 
-                filePath = path.join(filePath, 'testdata', strFileName);
+            let filePath = path.resolve('src')
 
-                console.log(filePath)
+            filePath = path.join(filePath, 'test_data', strFileName);
 
-                const file = reader.readFile(filePath);
+            console.log(filePath)
 
-                //console.log(file)
+            const file = reader.readFile(filePath);
 
-                //const sheets = file.SheetNames[0];
+            //console.log(file)
 
-                const sheet = file.Sheets[strSheetName]
-                //console.log(reader.utils.sheet_to_json(sheet))
+            //const sheets = file.SheetNames[0];
 
-                let temp1 = []
+            const sheet = file.Sheets[strSheetName]
+            //console.log(reader.utils.sheet_to_json(sheet))
 
-                temp1 = reader.utils.sheet_to_json(sheet).filter(item => item.TestCaseName === strTestCaseName)
+            let temp1 = []
 
-                return temp1
-        } catch (error) 
-        {
-            throw new Error(error.message);
-        }
+            temp1 = reader.utils.sheet_to_json(sheet).filter(item => item.TestCaseName === strTestCaseName)
+
+            return temp1
+        } catch (error) {
+            throw new Error(error.message);
+        }
     }
 
-    getData(fieldName){    
-        if(fieldName == "Company"){
+    getData(fieldName) {
+        if (fieldName == "Company") {
             return {
                 Name: faker.company.name(),
                 URL: faker.internet.url(),

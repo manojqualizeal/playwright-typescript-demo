@@ -1,5 +1,5 @@
 import { test as setup } from "@playwright/test";
-import CompanyAPI from "../../utils/api/CompanyAPI";
+import CompanyAPI from "../../utils/api/company-api";
 
 
 setup("authenticate", async ({ request, baseURL }) => {

@@ -1,55 +1,55 @@
 import { expect } from "@playwright/test";
-import * as locators from "../page-objects/locators";
-import * as commonLocators from "../page-objects/common-locators";
-import * as login from "../page-objects/login";
-import playwrightUtil from "../utils/playwright-util";
-import applicationGeneric from "./application-generic"
-import * as configprop from "../utils/config-prop";
-import * as contactsLocators from "../page-objects/contacts-locators";
-import * as applicationconstants from "../utils/application-constants";
+import * as locators from "../page_objects/locators";
+import * as commonLocators from "../page_objects/common_locators";
+import * as login from "../page_objects/login";
+import playwrightUtil from "../utils/playwright_util";
+import applicationGeneric from "./application_generic"
+import * as configprop from "../utils/config_prop";
+import * as contactsLocators from "../page_objects/contacts_locators";
+import * as applicationconstants from "../utils/application_constants";
 
 class contacts extends applicationGeneric {
-     constructor(page) {
+    constructor(page) {
         super(page);
     }
 
-    async navigateToContacts(){
+    async navigateToContacts() {
         this.selectEntity(configprop.NavContacts);
     }
 
-    async verifyCreatedContact(contactName){
+    async verifyCreatedContact(contactName) {
         this.checkRecordDisplayed(contactName);
     }
 
-    async enterFirstName(firstName){
+    async enterFirstName(firstName) {
         await this.fillInputBox(contactsLocators.txtFirstName, firstName);
     }
 
-    async enterLastName(lastName){
+    async enterLastName(lastName) {
         await this.fillInputBox(contactsLocators.txtLastName, lastName);
     }
 
-    async enterMiddleName(middleName){
+    async enterMiddleName(middleName) {
         await this.fillInputBox(contactsLocators.txtMiddleName, middleName);
     }
 
-    async enterEmail(email){
+    async enterEmail(email) {
         await this.fillInputBox(contactsLocators.txtEmail, email);
     }
-    
-    async enterAddress(address){
+
+    async enterAddress(address) {
         await this.fillInputBox(contactsLocators.address, address);
     }
 
-    async enterCity(city){
+    async enterCity(city) {
         await this.fillInputBox(contactsLocators.city, city);
     }
 
-    async enterState(state){
+    async enterState(state) {
         await this.fillInputBox(contactsLocators.state, state);
     }
 
-    async enterZip(zip){
+    async enterZip(zip) {
         await this.fillInputBox(contactsLocators.zip, zip);
     }
 
@@ -57,48 +57,46 @@ class contacts extends applicationGeneric {
     //     await this.selectItemFromDropdown(,commonLocators.listDropDown, addressCountry);
     // }
 
-    async enterDetails(objContactData){
-            //strCompanyName = Math.floor(Math.random() * (100000 - 10000) ) + 10000;
+    async enterDetails(objContactData) {
+        //strCompanyName = Math.floor(Math.random() * (100000 - 10000) ) + 10000;
 
         //strCompanyName = strCompanyName.toString();
 
         // strCompanyName = this.getRndInteger(10000,100000);
         // await this.fillInputBox(companiesLocators.txtName,objContactData.Name);
-        
-        if(objContactData.First_name){
+
+        if (objContactData.First_name) {
             await this.enterFirstName(objContactData.First_name);
         }
 
-        if(objContactData.Last_name){
+        if (objContactData.Last_name) {
             await this.enterLastName(objContactData.Last_name);
         }
 
-        if(objContactData.Middle_name){
+        if (objContactData.Middle_name) {
             await this.enterMiddleName(objContactData.Middle_name);
         }
 
-        if(objContactData.Address_street){
+        if (objContactData.Address_street) {
             await this.enterAddress(objContactData.Address_street);
         }
 
-        if(objContactData.Address_city){
+        if (objContactData.Address_city) {
             await this.enterCity(objContactData.Address_city);
         }
 
-        if(objContactData.Address_state){
+        if (objContactData.Address_state) {
             await this.enterState(objContactData.Address_state);
         }
 
-        if(objContactData.Zip){
+        if (objContactData.Zip) {
             await this.enterZip(objContactData.Zip);
         }
 
-        if(objContactData.Phone_Number)
-        {
+        if (objContactData.Phone_Number) {
             // await this.selectItemFromDropdown(contactsLocators.btnPhoneCountry,commonLocators.listDropDown,objContactData.Phone);
 
-            if(objContactData.Phone_Number_Type)
-            {
+            if (objContactData.Phone_Number_Type) {
                 await this.fillInputBox(contactsLocators.phoneNumber, objContactData.Phone_Number);
 
                 await this.fillInputBox(contactsLocators.phoneNumberType, objContactData.Phone_Number_Type);
@@ -106,10 +104,9 @@ class contacts extends applicationGeneric {
                 await this.clickOnElement(contactsLocators.btnPhoneAdd);
 
             }
-        } 
+        }
 
-        if(objContactData.Email)
-        {
+        if (objContactData.Email) {
             await this.fillInputBox(contactsLocators.txtEmail, objContactData.Email);
 
             await this.fillInputBox(contactsLocators.txtEmailType, objContactData.EmailType);
@@ -123,33 +120,28 @@ class contacts extends applicationGeneric {
         //     await this.selectValueFromAutoCompleteSearch(contactsLocators.txtTags, objContactData.Tags, 10);
         // }
 
-        if(objContactData.Status)
-        {
+        if (objContactData.Status) {
             await this.selectItemFromDropdown(contactsLocators.btnStatus, commonLocators.listDropDown, objContactData.Status);
         }
 
-        if(objContactData.Source)
-        {
+        if (objContactData.Source) {
             await this.selectItemFromDropdown(contactsLocators.btnSource, commonLocators.listDropDown, objContactData.Source);
         }
 
-        if(objContactData.Category)
-        {
+        if (objContactData.Category) {
             await this.selectItemFromDropdown(contactsLocators.btnCategory, commonLocators.listDropDown, objContactData.Category);
         }
 
-        if(objContactData.Identifier)
-        {
-            await this.fillInputBox(contactsLocators.txtIdentifier,objContactData.Identifier);
+        if (objContactData.Identifier) {
+            await this.fillInputBox(contactsLocators.txtIdentifier, objContactData.Identifier);
         }
     }
 
-    async save(){
+    async save() {
         await this.clickOnElement(commonLocators.btnSave);
     }
 
-    async createContact(objContactData)
-    {
+    async createContact(objContactData) {
         await this.enterDetails(objContactData);
 
         //after filling data
@@ -166,7 +158,7 @@ class contacts extends applicationGeneric {
 
     }
 
-    async deleteAndPurge(contactName){
+    async deleteAndPurge(contactName) {
 
         await this.deleteRecord(contactName);
 
@@ -181,13 +173,13 @@ class contacts extends applicationGeneric {
         await this.waitForSomeTime(2);
     }
 
-    async verifyMandatoryField(text){
+    async verifyMandatoryField(text) {
         await this.verifyToHaveText(contactsLocators.inLineErrMsg, text);
     }
 
-    async verifyCompanyFieldLength(text){
+    async verifyCompanyFieldLength(text) {
         await this.verifyToHaveText(contactsLocators.lengthErrorMsg, text);
     }
-   
-} 
+
+}
 export default contacts;
