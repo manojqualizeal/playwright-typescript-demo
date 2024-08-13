@@ -9,7 +9,7 @@ import { chromium } from "@playwright/test";
 
 let objReadData = new dataHandling();
 
-test.describe("Create Company", () => {
+test.describe("@smoke Create Company", () => {
 	test("Create Company", async ({ loginPage, companies }) => {
 		const objCompanyData = await objReadData.readSingleRowtestdataFromExcel(
 			"CRM.xlsx",

@@ -50,13 +50,18 @@ module.exports = defineConfig({
     //['line'],
     ['list', { printSteps: true }],
     ['html'],
-    [
-      "allure-playwright",
+    // [
+    //   "allure-playwright",
+    //   {
+    //     detail: true,
+    //     outputFolder: "allure-results",
+    //     suiteTitle: false,
+    //   },
+    // ]
+    ["ortoni-report",
       {
-        detail: true,
-        outputFolder: "allure-results",
-        suiteTitle: false,
-      },
+        projectName: "Playwright Demo",
+      }
     ]
 
   ],

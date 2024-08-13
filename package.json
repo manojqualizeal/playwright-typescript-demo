@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env ENV_Test=uat npx playwright test --project=chrome --headed --debug",
-    "test:company": "cross-env ENV_Test=sit npx playwright test --grep @company --project=chrome@lambdatest --headed",
+    "test:company": "cross-env ENV_Test=sit npx playwright test --grep @smoke --project=chrome --headed",
     "test:company:lambdatest": "cross-env ENV_Test=sit npx playwright test --grep @company --project=chrome@lambdatest --headed",
     "uat1test": "cross-env ENV_Test=uat npx playwright test --project=chrome --headed",
     "demotest": "cross-env ENV_Test=sit npx playwright test --grep @company",

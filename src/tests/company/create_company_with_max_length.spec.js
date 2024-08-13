@@ -12,7 +12,7 @@ import { chromium } from '@playwright/test';
 
 let objReadData = new dataHandling();
 
-test.describe('Create company with maximum length',
+test.describe('@smoke Create company with maximum length',
 	() => {
 		test('Create Company with Max Length', async ({
 			applicationGeneric,

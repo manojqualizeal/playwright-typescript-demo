@@ -11,7 +11,7 @@ import { chromium } from '@playwright/test';
 
 let objReadData = new dataHandling();
 
-test.describe('Create Company without mandatory parameters',
+test.describe('@smoke Create Company without mandatory parameters',
 	() => {
 		test('Create Company without Mandatory Fields', async ({
 			applicationGeneric,
