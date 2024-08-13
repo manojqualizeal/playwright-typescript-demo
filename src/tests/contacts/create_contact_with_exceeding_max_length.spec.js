@@ -48,7 +48,7 @@ test.describe('@contact Create Contact',
 
                 objContactData.First_name = contacts.generateString(applicationconstants.contactFirstNameMaxLength + 1);
 
-                await contacts.createButton("Create New Contact");
+                await applicationGeneric.clickOnCreate();
 
                 await contacts.enterDetails(objContactData);
 

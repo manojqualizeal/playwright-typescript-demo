@@ -39,10 +39,6 @@ test.describe('@contact Create Contact',
 
 				await contacts.navigateToContacts();
 
-				// await applicationGeneric.selectEntity(configprop.NavCompanies);
-
-				await contacts.createButton("Create New Contact");
-
 				await contacts.createContact(objContactData);
 
 				await contacts.navigateToContacts();

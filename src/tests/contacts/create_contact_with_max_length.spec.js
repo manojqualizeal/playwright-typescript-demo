@@ -47,8 +47,6 @@ test.describe('@contact Create Contact',
 				objContactData.Middle_name = contacts.generateString(applicationconstants.contactMiddleNameMaxLength);
 				objContactData.Last_name = contacts.generateString(applicationconstants.contactLastNameMaxLength);
 
-				await contacts.createButton("Create New Contact");
-
 				await contacts.createContact(objContactData);
 
 				await contacts.navigateToContacts();

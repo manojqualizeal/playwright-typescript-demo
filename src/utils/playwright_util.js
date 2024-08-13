@@ -22,13 +22,6 @@ class playwrightUtil {
 		await this.page.reload();
 	}
 
-	// async isElementDisplayed(selector) {
-	//   const element = await this.page.$(selector);
-	//   return !!element;
-	// }
-
-
-
 	async getPageTitle() {
 		return await this.page.title();
 	}
@@ -58,7 +51,7 @@ class playwrightUtil {
 	}
 
 	async waitForSomeTime(timeInSeconds) {
-		console.log('Additional Wait for ' + timeInSeconds + ' seconds.');
+		//console.log('Additional Wait for ' + timeInSeconds + ' seconds.');
 		await new Promise(resolve => setTimeout(resolve, (timeInSeconds * 1000)));
 	}
 
@@ -77,10 +70,6 @@ class playwrightUtil {
 	async waitForSelectorState(selector, strState, timeInSeconds) {
 		await this.page.waitForSelector(selector, { state: strState, timeout: timeInSeconds * 1000 });
 	}
-
-	// async getElement(selector) {
-	//   return await this.page.$(selector);
-	// }
 
 	async getElement(selector) {
 		return await this.page.locator(selector);
@@ -247,20 +236,10 @@ class playwrightUtil {
 
 		let selector = `//*[contains(text(),'" + ${text} + "')]`;
 
-		//let selector = "//*[contains(text(),'safafa')]";
-
 		let bFlag;
 
 		try {
-			//const element = await this.page.waitForSelector(selector);
-
 			const element = await this.page.waitForSelector(selector, { state: 'attached', timeout: 10 * 1000 });
-
-			//await this.waitForSomeTime(10);
-
-			//const element = await this.page.locator(selector).waitFor({ state:'attached',timeout: 10 * 1000});
-
-			//element.waitFor({ state:strState,timeout: timeInSeconds * 1000})
 
 			bFlag = !!element;
 

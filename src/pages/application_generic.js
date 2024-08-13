@@ -26,7 +26,6 @@ class ApplicationGeneric extends PlaywrightUtil {
     async checkRecordNotDisplayed(strValue) {
         const selector = commonLocators.recordName.replace('%s', strValue);
         await this.verifyElementNotAttachedSoft(selector);
-        console.log("record is removed");
     }
 
     async performTableOperation(sSearchValue, operation) {
@@ -112,11 +111,9 @@ class ApplicationGeneric extends PlaywrightUtil {
         await this.verifyElementAttached(selector);
     }
 
-    async createButton(strHeaderName) {
+    async clickOnCreate() {
 
         await this.clickOnElement(commonLocators.btnCreate);
-
-        await this.checkPageHeader(strHeaderName);
 
     }
 
@@ -135,15 +132,12 @@ class ApplicationGeneric extends PlaywrightUtil {
 
             const optionsCount = await options.count();
 
-            console.log(optionsCount);
-
             if (!options) {
                 //throw new Error(`Element with selector ${searchitemlist} not found.`);
                 expect(false, `Element with selector ${strListSelector} not found.`).toBeTruthy();
             }
             for (let i = 0; i < optionsCount; i++) {
                 const strOptionValue = await options.nth(i).textContent();
-                console.log(strOptionValue);
                 if (strOptionValue.includes(strDropDownvalue)) {
                     // click and break lloop
                     await options.nth(i).click();
@@ -175,15 +169,12 @@ class ApplicationGeneric extends PlaywrightUtil {
 
             const optionsCount = await options.count();
 
-            console.log(optionsCount);
-
             if (!options) {
                 throw new Error(`Element with selector ${searchitemlist} not found.`);
             }
 
             for (let i = 0; i < optionsCount; i++) {
                 const strOptionValue = await options.nth(i).textContent();
-                console.log(strOptionValue);
                 if (strOptionValue.includes(strvalue)) {
                     // click and break lloop
                     await options.nth(i).click();

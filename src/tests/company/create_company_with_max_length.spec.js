@@ -12,7 +12,7 @@ import { chromium } from '@playwright/test';
 
 let objReadData = new dataHandling();
 
-test.describe('@company create company with maximum length',
+test.describe('Create company with maximum length',
 	() => {
 		test('Create Company with Max Length', async ({
 			applicationGeneric,
@@ -28,26 +28,15 @@ test.describe('@company create company with maximum length',
 
 				await loginPage.verifyLoginIsSuccessful();
 
-				// await applicationGeneric.selectValueFromAutoCompleteSearch(companiesLocators.txtTags,"Demo deal",10);
-
-				// await applicationGeneric.selectItemFromDropdown(companiesLocators.btnPriority,commonLocators.listDropDown,"Medium");
-
-				// await playwrightUtil.waitForSomeTime(10);
-
-
 			});
 
 			await test.step(`Create Company`, async () => {
 
 				await companies.navigateToCompanies();
 
-				// await applicationGeneric.selectEntity(configprop.NavCompanies);
-
-				await applicationGeneric.createButton("Create new Company");
+				await companies.createCompany(objCompanyData);
 
 				objCompanyData.Name = companies.generateString(applicationconstants.companyMaxLength);
-
-				await companies.createCompany(objCompanyData);
 
 				await companies.navigateToCompanies();
 

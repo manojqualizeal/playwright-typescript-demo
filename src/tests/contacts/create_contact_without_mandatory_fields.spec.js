@@ -44,7 +44,7 @@ test.describe('@contact Create Contact',
 
 				// Step 1 : Try to Create Contact with No First Name
 
-				await contacts.createButton("Create New Contact");
+				await applicationGeneric.clickOnCreate();
 
 				objContactData.First_name = null;
 
@@ -58,7 +58,7 @@ test.describe('@contact Create Contact',
 
 				await contacts.navigateToContacts();
 
-				await contacts.createButton("Create New Contact");
+				await applicationGeneric.clickOnCreate();
 
 				objContactData.First_name = firstName;
 

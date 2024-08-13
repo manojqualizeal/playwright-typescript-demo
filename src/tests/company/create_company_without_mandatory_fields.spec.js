@@ -11,7 +11,7 @@ import { chromium } from '@playwright/test';
 
 let objReadData = new dataHandling();
 
-test.describe('@company Create Company without mandatory parameters',
+test.describe('Create Company without mandatory parameters',
 	() => {
 		test('Create Company without Mandatory Fields', async ({
 			applicationGeneric,
@@ -26,22 +26,13 @@ test.describe('@company Create Company without mandatory parameters',
 
 				await loginPage.verifyLoginIsSuccessful();
 
-				// await applicationGeneric.selectValueFromAutoCompleteSearch(companiesLocators.txtTags,"Demo deal",10);
-
-				// await applicationGeneric.selectItemFromDropdown(companiesLocators.btnPriority,commonLocators.listDropDown,"Medium");
-
-				// await playwrightUtil.waitForSomeTime(10);
-
-
 			})
 
 			await test.step(`Create Company`, async () => {
 
 				await companies.navigateToCompanies();
 
-				// await applicationGeneric.selectEntity(configprop.NavCompanies);
-
-				await applicationGeneric.createButton("Create new Company");
+				await applicationGeneric.clickOnCreate();
 
 				objCompanyData.Name = "";
 

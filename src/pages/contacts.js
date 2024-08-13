@@ -21,120 +21,116 @@ class Contacts extends ApplicationGeneric {
         this.checkRecordDisplayed(contactName);
     }
 
-    async enterFirstName(firstName) {
-        await this.fillInputBox(contactsLocators.txtFirstName, firstName);
+    async  enterFirstName(firstName) {
+        if (firstName != undefined) {
+            await this.enterFirstName(firstName);
+        }
     }
-
-    async enterLastName(lastName) {
-        await this.fillInputBox(contactsLocators.txtLastName, lastName);
+    
+    async  enterLastName(lastName) {
+        if (lastName != undefined) {
+            await this.enterLastName(lastName);
+        }
     }
-
-    async enterMiddleName(middleName) {
-        await this.fillInputBox(contactsLocators.txtMiddleName, middleName);
+    
+    async  enterMiddleName(middleName) {
+        if (middleName != undefined) {
+            await this.enterMiddleName(middleName);
+        }
     }
-
-    async enterEmail(email) {
-        await this.fillInputBox(contactsLocators.txtEmail, email);
+    
+    async  enterAddress(addressStreet) {
+        if (addressStreet != undefined) {
+            await this.enterAddress(addressStreet);
+        }
     }
-
-    async enterAddress(address) {
-        await this.fillInputBox(contactsLocators.address, address);
+    
+    async  enterCity(addressCity) {
+        if (addressCity != undefined) {
+            await this.enterCity(addressCity);
+        }
     }
-
-    async enterCity(city) {
-        await this.fillInputBox(contactsLocators.city, city);
+    
+    async  enterState(addressState) {
+        if (addressState != undefined) {
+            await this.enterState(addressState);
+        }
     }
-
-    async enterState(state) {
-        await this.fillInputBox(contactsLocators.state, state);
+    
+    async  enterZip(zip) {
+        if (zip != undefined) {
+            await this.enterZip(zip);
+        }
     }
-
-    async enterZip(zip) {
-        await this.fillInputBox(contactsLocators.zip, zip);
+    
+    async  enterPhoneNumber(phoneNumber, phoneNumberType) {
+        if (phoneNumber != undefined && phoneNumberType != undefined) {
+            await this.fillInputBox(contactsLocators.phoneNumber, phoneNumber);
+            await this.fillInputBox(contactsLocators.phoneNumberType, phoneNumberType);
+            await this.clickOnElement(contactsLocators.btnPhoneAdd);
+        }
     }
-
-    // async enterAddressCountry(addressCountry){
-    //     await this.selectItemFromDropdown(,commonLocators.listDropDown, addressCountry);
-    // }
+    
+    async  enterEmail(email, emailType) {
+        if (email != undefined && emailType != undefined) {
+            await this.fillInputBox(contactsLocators.txtEmail, email);
+            await this.fillInputBox(contactsLocators.txtEmailType, emailType);
+            await this.clickOnElement(contactsLocators.btnEmailAdd);
+        }
+    }
+    
+    async  setStatus(status) {
+        if (status != undefined) {
+            await this.selectItemFromDropdown(contactsLocators.btnStatus, commonLocators.listDropDown, status);
+        }
+    }
+    
+    async  setSource(source) {
+        if (source != undefined) {
+            await this.selectItemFromDropdown(contactsLocators.btnSource, commonLocators.listDropDown, source);
+        }
+    }
+    
+    async  setCategory(category) {
+        if (category != undefined) {
+            await this.selectItemFromDropdown(contactsLocators.btnCategory, commonLocators.listDropDown, category);
+        }
+    }
+    
+    async  enterIdentifier(identifier) {
+        if (identifier != undefined) {
+            await this.fillInputBox(contactsLocators.txtIdentifier, identifier);
+        }
+    }
+    
 
     async enterDetails(objContactData) {
-        //strCompanyName = Math.floor(Math.random() * (100000 - 10000) ) + 10000;
-
-        //strCompanyName = strCompanyName.toString();
-
-        // strCompanyName = this.getRndInteger(10000,100000);
-        // await this.fillInputBox(companiesLocators.txtName,objContactData.Name);
-
-        if (objContactData.First_name) {
             await this.enterFirstName(objContactData.First_name);
-        }
 
-        if (objContactData.Last_name) {
             await this.enterLastName(objContactData.Last_name);
-        }
-
-        if (objContactData.Middle_name) {
+      
             await this.enterMiddleName(objContactData.Middle_name);
-        }
-
-        if (objContactData.Address_street) {
+      
             await this.enterAddress(objContactData.Address_street);
-        }
-
-        if (objContactData.Address_city) {
+        
             await this.enterCity(objContactData.Address_city);
-        }
-
-        if (objContactData.Address_state) {
+   
             await this.enterState(objContactData.Address_state);
-        }
-
-        if (objContactData.Zip) {
+   
             await this.enterZip(objContactData.Zip);
-        }
 
-        if (objContactData.Phone_Number) {
-            // await this.selectItemFromDropdown(contactsLocators.btnPhoneCountry,commonLocators.listDropDown,objContactData.Phone);
-
-            if (objContactData.Phone_Number_Type) {
-                await this.fillInputBox(contactsLocators.phoneNumber, objContactData.Phone_Number);
-
-                await this.fillInputBox(contactsLocators.phoneNumberType, objContactData.Phone_Number_Type);
-
-                await this.clickOnElement(contactsLocators.btnPhoneAdd);
-
-            }
-        }
-
-        if (objContactData.Email) {
-            await this.fillInputBox(contactsLocators.txtEmail, objContactData.Email);
-
-            await this.fillInputBox(contactsLocators.txtEmailType, objContactData.EmailType);
-
-            await this.clickOnElement(contactsLocators.btnEmailAdd);
-
-        }
-
-        // if(objContactData.Tags)
-        // {
-        //     await this.selectValueFromAutoCompleteSearch(contactsLocators.txtTags, objContactData.Tags, 10);
-        // }
-
-        if (objContactData.Status) {
-            await this.selectItemFromDropdown(contactsLocators.btnStatus, commonLocators.listDropDown, objContactData.Status);
-        }
-
-        if (objContactData.Source) {
-            await this.selectItemFromDropdown(contactsLocators.btnSource, commonLocators.listDropDown, objContactData.Source);
-        }
-
-        if (objContactData.Category) {
-            await this.selectItemFromDropdown(contactsLocators.btnCategory, commonLocators.listDropDown, objContactData.Category);
-        }
-
-        if (objContactData.Identifier) {
-            await this.fillInputBox(contactsLocators.txtIdentifier, objContactData.Identifier);
-        }
+            await this.enterPhoneNumber(objContactData.Phone_Number, objContactData.Phone_Number_Type);
+        
+            await this.enterEmail(objContactData.Email, objContactData.EmailType);
+            
+            await this.setStatus(objContactData.Status);
+            
+            await this.setSource(objContactData.Source);
+            
+            await this.setCategory(objContactData.Category);
+            
+            await this.enterIdentifier(objContactData.Identifier);
+            
     }
 
     async save() {
@@ -142,6 +138,9 @@ class Contacts extends ApplicationGeneric {
     }
 
     async createContact(objContactData) {
+
+        await this.clickOnCreate();
+        
         await this.enterDetails(objContactData);
 
         //after filling data
