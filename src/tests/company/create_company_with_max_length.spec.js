@@ -23,7 +23,6 @@ test.describe('@smoke Create company with maximum length',
 			const objCompanyData = await objReadData.readSingleRowtestdataFromExcel("CRM.xlsx", "Companies", "TC1");
 
 			await test.step(`Open the URL and Enter Username and Password & Verify the user is logged in`, async () => {
-
 				await loginPage.login(configprop.UserName, configprop.PassWord);
 
 				await loginPage.verifyLoginIsSuccessful();
@@ -34,9 +33,9 @@ test.describe('@smoke Create company with maximum length',
 
 				await companies.navigateToCompanies();
 
-				await companies.createCompany(objCompanyData);
-
 				objCompanyData.Name = companies.generateString(applicationconstants.companyMaxLength);
+
+				await companies.createCompany(objCompanyData);
 
 				await companies.navigateToCompanies();
 

@@ -17,3 +17,12 @@ test('get started link', async ({ page }) => {
   // Expects page to have a heading with the name of Installation.
   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
 });
+
+
+test.only('frames', async ({ page }) => {
+  await page.goto('https://letcode.in/frame');
+  // Switch to the iframe.
+  const frames = await page.frames();
+  console.log('Frames count:', frames.length);
+  // console.log('Frames:', frames);
+})
